@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Emblishment_Management_System.Models.emsComponentsM>
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="box">
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="table" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>FG Style     </th>
+                            <th>SG Style     </th>
+                            <th>SG Component</th>
+                            <th>Description </th>
+                            <th>Item Type </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Emblishment_Management_System.Models.emsComponentsM emsComponents in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        @using (@Html.BeginForm("Edit", "Components", new { Id = emsComponents.ID }, FormMethod.Get, new { @title = "Edit" }))
+                                        {<button type="submit" class="btn btn-warning btn-xs glyphicon glyphicon-edit"></button>}
+
+                                        @* @using (@Html.BeginForm("Delete", "Components", new { Id = emsComponents.ID }, FormMethod.Post, new { @title = "Delete" }))*@
+                                        <button type="submit" class="btn btn-danger btn-xs glyphicon glyphicon-trash" data-toggle="confirmation"></button>
+                                    </div>
+                                </td>
+                                <td> @emsComponents.FGStyle</td>
+                                <td> @emsComponents.SGStyle</td>
+                                <td> @emsComponents.SGComponent</td>
+                                <td> @emsComponents.Description</td>
+                                <td> @emsComponents.ItemType</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+

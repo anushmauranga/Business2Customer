@@ -1,0 +1,111 @@
+﻿@model  Emblishment_Management_System.Models.emsIssue.emsIssueTD
+
+<div class="">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rejection Item Detail</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="box">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @Id = "frmIssueReverseItem" }))
+                    {
+                    <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label>SO</label>
+                                    @Html.EditorFor(model => model.SO, new { htmlAttributes = new { @class = "form-control", placeholder = "Sales Order", @Id = "SO", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.SO)
+                                </div>
+
+                                <div class="form-group">
+                                    <label>SG Style</label>
+                                    @Html.EditorFor(model => model.SGStyle, new { htmlAttributes = new { @class = "form-control", placeholder = "SG Style", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.SGStyle)
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Size</label>
+                                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", placeholder = "Size", disabled = "disabled", @readonly = "readonly" } })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Reverse Qty</label>
+                                    @Html.EditorFor(model => model.ReverseQty, new { htmlAttributes = new { @class = "form-control integer", placeholder = "Reverse Qty", @Id = "ReverseQty" } })
+                                    @Html.HiddenFor(model => model.ReverseQty)
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label>SG Component</label>
+                                    @Html.EditorFor(model => model.SGComponent, new { htmlAttributes = new { @class = "form-control", placeholder = "SG Component", @Id = "SGComponent", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.ID)
+                                </div>
+
+                                    <div class="form-group">
+                                        <label>Docket</label>
+                                        @Html.EditorFor(model => model.Docket, new { htmlAttributes = new { @class = "form-control", placeholder = "Docket", disabled = "disabled", @readonly = "readonly" } })
+                                        @Html.HiddenFor(model => model.Docket)
+                                    </div>
+
+                                <div class="form-group">
+                                    <label>Qty</label>
+                                    @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control", placeholder = "Qty", @Id = "Qty", @disabled = "disabled", @readonly = "readonly" } })
+                                </div>
+
+                                <div class="form-group">
+                                    <label>&nbsp;</label><br>
+                                    <button type="submit" class="btn btn-info" onclick="IssueItem(this, event);">Submit</button>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default modal-close-btn" data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    function IssueItem(ctrl, event) {
+        event.preventDefault();
+
+        var ReverseQty = parseInt($("#ReverseQty").val());
+        var Qty = parseInt($("#Qty").val());
+
+    
+        if ((ReverseQty <= 0) || (Qty <= 0) || (Qty < ReverseQty)) {
+            $("#ReverseQty").focus();
+            bootbox.alert('You entered reverse qty is invalid.');
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("ReverseQtyAdjust", "Issue")',
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#divReverseDetails").html(result);
+                    $('#modal-container').modal('hide');
+                }
+            });
+        }
+    }
+
+
+    //Textbox integer accept
+    $(".integer").keypress(function (e) {
+        if (e.which < 48 || e.which > 57) {
+            return (false);  // stop processing
+        }
+    });
+</script>

@@ -1,0 +1,150 @@
+﻿@using Emblishment_Management_System.Models
+@model Emblishment_Management_System.Models.emsStockTypeM
+
+@{
+    ViewBag.Title = "Stock Type";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@*@Request.IsAuthenticated;*@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Stock Type Master
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Master</a></li>
+        <li class="active">Stock Type</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h3 class="box-title">Stock Type Master Details</h3>
+        </div>
+        <div class="box-body">
+            @using (Html.BeginForm("Save", "StockType", FormMethod.Post, new { id = "frmSave" }))
+            {
+                <div id="1stRow" class="row form-group">
+                    <div class="col-md-2 col-sm-2">
+                        <div>
+                            <label>Stock Type Code</label>
+                            @Html.EditorFor(model => model.StockTypeCode, new
+                       {
+                           htmlAttributes = new
+                           {
+                               @class = "input-sm form form-control",
+                               placeholder = "Enter Code",
+                               id = "txtStockTypeCode"
+                           }
+                       })
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-3">
+                        <div>
+                            <label>Stock Type Description</label>
+                            @Html.EditorFor(model => model.Description, new
+                       {
+                           htmlattributes = new
+                           {
+                               @class = "input-sm form form-control",
+                               placeholder = "Enter Description",
+                               id = "txtDescription"
+                           }
+                       })
+                        </div>
+                    </div>
+                </div>
+                <div id="2ndRow" class="row form-group">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="btn-group">
+                            <input id="btnSave" type="submit" onclick="ReqValidate(this, event);" class="btn btn-default btn-sm" value="Save" />
+                        </div>
+                    </div>
+                </div>
+            }
+            <div id="3rdRow" class="row form-group">
+                <div class="col-md-12 col-sm-12">
+                    <div id="StockTypePartial">
+                        @Html.Partial("~/Views/StockType/Details.cshtml", ViewBag.StockTypeAll as List<emsStockTypeM>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            $.ajax({
+                url: '@Url.Action("Details", "StockType")',
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#StockTypePartial").html(result);
+                }
+            });
+        });
+    });
+
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".Searchbtn").click(function () {
+            var $row = $(this).closest("tr");
+            var $textStockTypeCode = $row.find(".clsStockTypeCode").text();
+            var $Description = $row.find(".clsDescription").text();
+
+            $('#txtStockTypeCode').val($textStockTypeCode);
+            $('#txtDescription').val($Description);
+
+        });
+    });
+
+</script>
+
+<script type="text/javascript">
+    //jQuery(document).ready(function () {
+    //    jQuery('[data-confirm]').click(function (e) {
+    //        if (!confirm(jQuery(this).attr("data-confirm"))) {
+    //            e.preventDefault();
+    //        }
+    //    });
+    //});
+
+    function ReqValidate(ctl, event) {
+        event.preventDefault();
+        var $Code = $("#txtStockTypeCode").val();
+        var $Dec = $("#txtDescription").val();
+
+        if (($Code === "") || ($Dec === "")) {
+
+            bootbox.alert("Please enter valid data to the text field.");
+        } else {
+            $("#frmSave").submit();
+        }
+
+    }
+
+    function Validate(ctl, event) {
+        event.preventDefault();
+        bootbox.confirm("Please confirm to delete!",
+                function (result) {
+                    if (result === true) {
+                        $("#frmDelete").submit();
+                    }
+                });
+    }
+
+
+</script>

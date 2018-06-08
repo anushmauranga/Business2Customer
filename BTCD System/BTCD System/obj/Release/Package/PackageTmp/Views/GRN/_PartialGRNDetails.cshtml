@@ -1,0 +1,133 @@
+﻿@model  IEnumerable<Emblishment_Management_System.Models.emsGRN.emsGrnTD>
+@using Emblishment_Management_System.Common
+
+    <table id="tblBins" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>#</th>
+                <th>SO</th>
+                <th>SG Style</th>
+                <th>SG Component</th>
+                <th>Stock Type</th>
+                <th>Docket</th>
+                <th>Size</th>
+                <th>Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Emblishment_Management_System.Models.emsGRN.emsGrnTD emsGrd in Model)
+            {
+                <tr>
+                    <td>
+                        <div>
+                            <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-trash DeleteBtn" id="btnDelete"></button>
+                        </div>
+                    </td>
+                    <td id="RowId" class="clsRowId">@Html.Hidden("ID", @emsGrd.ID)  @emsGrd.ID </td>
+                    <td>@Html.Hidden("SO", @emsGrd.SO) @emsGrd.SO</td>
+                    <td>@Html.Hidden("SGStyle", @emsGrd.SGStyle) @emsGrd.SGStyle</td>
+                    <td>@Html.Hidden("SGComponent", @emsGrd.SGComponent) @emsGrd.SGComponent</td>
+                    <td>@Html.Hidden("StockTypeCode", @emsGrd.StockTypeCode) @emsGrd.StockTypeCode</td>
+                    <td>@Html.Hidden("Docket", @emsGrd.Docket) @emsGrd.Docket</td>
+                    <td>@Html.Hidden("Size", @emsGrd.Size) @emsGrd.Size</td>
+                    <td class="clsQty">@*@Html.Hidden("GrnQty", @emsGrd.GrnQty) @emsGrd.GrnQty*@ <input type="number" value="@emsGrd.GrnQty" class="txtQty integer"  /></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+
+<script type="text/javascript">
+    //$('.clsQty').on('changed', function () {
+    //    alert('changed')
+    //})
+
+    $('.clsQty').change(function () {
+        var $row = $(this).closest("tr");
+        var RowNo = $row.find(".clsRowId").text();
+        var Qty = $(this).closest('tr').find('.txtQty').val();
+
+        //alert("Row number -> " + RowNo + " Qty -> " + Qty);
+
+        if (Qty <= 0) {
+            bootbox.alert('Invalid grn qty.');
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("PartialEditQty", "GRN")',
+                type: "POST",
+                data: { ID: RowNo, Qty: Qty },
+                success: function (result) {
+                    $("#divPartialView").html(result);
+                }
+            });
+        }
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".DeleteBtn").click(function () {
+
+            $('#frmGRN').submit(function (evt) {
+                evt.preventDefault();
+                window.history.back();
+            });
+
+            var $row = $(this).closest("tr");
+            var RowNo = $row.find(".clsRowId").text();
+
+            $.ajax({
+                url: '@Url.Action("PartialDeleteGRNDetails", "GRN")',
+                type: "POST",
+                data: { ID: RowNo },
+                success: function (result) {
+                    $("#divPartialView").html(result);
+                }
+            });
+
+          
+        });
+    });
+
+
+
+
+    //Textbox integer accept
+    $(".integer").keypress(function (e) {
+        if (e.which < 48 || e.which > 57) {
+            return (false);  // stop processing
+        }
+    });
+
+
+    var $quan = $('.txtQty');
+    $('.txtQty').keyup(function (e) {
+        if (e.keyCode == 13) {
+            var ind = $quan.index(this);
+            $quan.eq(ind + 1).focus();
+            setTimeout(function () { $quan.eq(ind + 1).select(); },100);
+        }
+    });
+
+    //$(document).ready(function () {
+    //    $("input:number").focus(function () { $(this).select(); });
+    //});
+
+    //var $quan = $('.quantity');
+    //$('input[type="number"]').keyup(function (e) {
+    //    if (e.keyCode == 13) {
+    //        $(".txtQty").next().focus();
+    //    }
+    //});
+</script>
+
+@if (TempData["Message"] != null)
+{
+    MessageBox UserMessage = (MessageBox)TempData["Message"];
+    @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
+}

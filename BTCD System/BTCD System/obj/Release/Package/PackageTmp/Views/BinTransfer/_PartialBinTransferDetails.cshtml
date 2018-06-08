@@ -1,0 +1,182 @@
+﻿@model  IEnumerable<Emblishment_Management_System.Models.emsStockCumT>
+@using Emblishment_Management_System.Common
+
+    <table id="table" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th style="display: none;">#</th>
+                <th>SO</th>
+                <th>SG Style</th>
+                <th>SG Component</th>
+                <th>Stock Type</th>
+                <th>Batch</th>
+                <th>QC Passed</th>
+                <th>Docket</th>
+                <th>Size</th>
+                <th>Qty</th>
+                <th>Trn. Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Emblishment_Management_System.Models.emsStockCumT emsStockCum in Model)
+            {
+                <tr>
+                    <td>
+                        <div>
+                            @*@Html.ActionLink(" ", null, null, null, new { @class = "EditBtn btn btn-warning btn-xs glyphicon glyphicon-edit modal-link" })*@
+                            <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-trash DeleteBtn" id="btnDelete"></button>
+                        </div>
+                    </td>
+                    <td id="RowId" class="clsRowId" style="display: none;">@emsStockCum.ID </td>
+                    <td>@emsStockCum.SO</td>
+                    <td>@emsStockCum.SGStyle</td>
+                    <td>@emsStockCum.Description</td>
+                    <td>@emsStockCum.StockDescription</td>
+                    <td>@emsStockCum.BatchId</td>
+                    @if (emsStockCum.QCPassed)
+                    {
+                        <td>Yes</td>
+                    }
+                    else
+                    {
+                        <td>No</td>
+                    }
+                    <td>@emsStockCum.Docket</td>
+                    <td>@emsStockCum.Size</td>
+                    <td>@emsStockCum.Qty</td>
+                    <td class="clsQty">@*@Html.Hidden("GrnQty", @emsGrd.GrnQty) @emsGrd.GrnQty*@ <input type="number" value="@emsStockCum.TrnQty" class="txtQty integer" /></td>
+                    @*<td>@emsStockCum.TrnQty</td>*@
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".DeleteBtn").click(function () {
+
+            var $row = $(this).closest("tr");
+            var RowNo = $row.find(".clsRowId").text();
+            var SearchData = $('#searchval').val();
+
+            $.ajax({
+                url: '@Url.Action("DeleteItem", "BinTransfer")',
+                type: "POST",
+                data: { Id: RowNo },
+                success: function (result) {
+                    $("#divPartialView").html(result);
+
+                    //Initialize Data Tables
+                    $(".table").DataTable({
+                        "columnDefs": [{
+                            "defaultContent": "-",
+                            "targets": "_all"
+                        }]
+                    });
+
+                    var table = $('.table').DataTable();
+                    table.search(SearchData).draw();
+                }
+            });
+
+          
+        });
+    });
+
+
+    $('.clsQty').change(function () {
+        var $row = $(this).closest("tr");
+        var RowNo = $row.find(".clsRowId").text();
+        var Qty = $(this).closest('tr').find('.txtQty').val();
+        var SearchData = $('#searchval').val();
+
+         
+
+        if (Qty <= 0) {
+            $(this).closest('tr').find('.txtQty').val(0);
+            bootbox.alert('Invalid transfer qty.');
+
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("TransferItem", "BinTransfer")',
+                type: "POST",
+                data: { ID: RowNo, Qty: Qty },
+                success: function (result) {
+                    $("#divPartialView").html(result);
+
+                    //Initialize Data Tables
+                    $(".table").DataTable({
+                        "columnDefs": [{
+                            "defaultContent": "-",
+                            "targets": "_all"
+                        }]
+                    });
+
+                   var table = $('.table').DataTable();
+                   table.search(SearchData).draw();
+                }
+            });
+        }
+    });
+
+
+
+    //Textbox integer accept
+    $(".integer").keypress(function (e) {
+        if (e.which < 48 || e.which > 57) {
+            return (false);  // stop processing
+        }
+    });
+
+
+
+    $('.table').on('search.dt', function () {
+        var value = $('.dataTables_filter input').val();
+        if (value != "" || value != null) $('#searchval').val(value);
+    });
+
+   
+    
+   
+    //Initialize Data Tables
+    //$("#tblBins").DataTable({
+    //    //"columnDefs": [{
+    //    //    "defaultContent": "-",
+    //    //    "targets": "_all"
+    //    //}]
+
+
+    //});
+  
+
+
+    @*$(document).ready(function () {
+        $(".EditBtn").click(function () {
+
+            var $row = $(this).closest("tr");
+            var RowNo = $row.find(".clsRowId").text();
+
+            $.ajax({
+                url: '@Url.Action("EditTranferQty", "BinTransfer")',
+                type: "POST",
+                data: { ID: RowNo },
+                success: function (result) {
+                    $('#modal-container').html(result);
+                }
+            });
+
+
+        });
+    });*@
+
+</script>
+
+@if (TempData["Message"] != null)
+{
+    MessageBox UserMessage = (MessageBox)TempData["Message"];
+    @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
+}

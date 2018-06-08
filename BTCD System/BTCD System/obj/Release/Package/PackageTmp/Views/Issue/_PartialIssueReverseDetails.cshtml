@@ -1,0 +1,103 @@
+﻿@model  IEnumerable<Emblishment_Management_System.Models.emsIssue.emsIssueTD>
+@using Emblishment_Management_System.Common
+
+    <table id="table" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th style="display: none;">#</th>
+                <th>Issue No</th>
+                <th>SO</th>
+                <th>SG Style</th>
+                <th>SG Component</th>
+                <th>Stock Type</th>
+                <th>Bin</th>
+                <th>Batch</th>
+                <th>Docket</th>
+                <th>Size</th>
+                <th>Qty</th>
+                <th>Reverse Qty</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Emblishment_Management_System.Models.emsIssue.emsIssueTD emsIssue in Model)
+            {
+                <tr>
+                    <td>
+                        <div>
+                            @*<button type="button" class="btn btn-warning btn-xs glyphicon glyphicon-edit EditBtn modal-link" id="btnEdit"></button>*@
+                           
+                            @Html.ActionLink(" ", null, null, null, new { @class = "EditBtn btn btn-warning btn-xs glyphicon glyphicon-edit modal-link" })
+                            <button type="button" class="btn btn-danger btn-xs glyphicon glyphicon-trash DeleteBtn" id="btnDelete"></button>
+                        </div>
+                    </td>
+                    <td id="RowId" class="clsRowId" style="display: none;">@emsIssue.ID </td>
+                    <td>@emsIssue.IssueNo</td>
+                    <td>@emsIssue.SO</td>
+                    <td>@emsIssue.SGStyle</td>
+                    <td>@emsIssue.Description</td>
+                    <td>@emsIssue.StockDescription</td>
+                    <td>@emsIssue.BinCode</td>
+                    <td>@emsIssue.BatchId</td>
+                    <td>@emsIssue.Docket</td>
+                    <td>@emsIssue.Size</td>
+                    <td>@emsIssue.Qty</td>
+                    <td>@emsIssue.ReverseQty</td>
+                </tr>
+                }
+        </tbody>
+
+    </table>
+
+    <script type="text/javascript">
+        //Item Edit
+        $(document).ready(function () {
+            $(".EditBtn").click(function () {
+
+                var $row = $(this).closest("tr");
+                var RowNo = $row.find(".clsRowId").text();
+
+                $.ajax({
+                    url: '@Url.Action("ReverseItem", "Issue")',
+                    type: "POST",
+                    data: { ID: RowNo },
+                    success: function (result) {
+                        $('#modal-container').html(result);
+                    }
+                });
+
+
+            });
+        });
+
+        //Item Delete
+        $(document).ready(function () {
+            $(".DeleteBtn").click(function () {
+
+                $('#frmIssueReverse').submit(function (evt) {
+                    evt.preventDefault();
+                    window.history.back();
+                });
+
+                var $row = $(this).closest("tr");
+                var RowNo = $row.find(".clsRowId").text();
+
+                $.ajax({
+                    url: '@Url.Action("RemoveReverseItem", "Issue")',
+                    type: "POST",
+                    data: { ID: RowNo },
+                    success: function (result) {
+                        $("#divReverseDetails").html(result);
+                    }
+                });
+
+
+            });
+        });
+    </script>
+
+    @if (TempData["Message"] != null)
+    {
+        MessageBox UserMessage = (MessageBox)TempData["Message"];
+        @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
+    }

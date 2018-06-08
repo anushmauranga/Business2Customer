@@ -1,0 +1,97 @@
+﻿@model IEnumerable<Emblishment_Management_System.Models.emsInspectionT>
+@using Emblishment_Management_System.Common
+
+    <!-- /.box-header -->
+        <table  id="tblInspectionRevDetails" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>GRN No</th>
+                    <th>SG Style</th>
+                    <th>SG Component</th>
+                    <th>SO</th>
+                    <th>Docket</th>
+                    <th>Size </th>
+                    <th>Batch ID </th>
+                    <th>Actual Qty</th>
+                    <th>Passed Qty</th>
+                    <th>Passed Reverse Qty</th>
+                    <th>Damage Qty</th>
+                    <th>Damage Reverse Qty</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Emblishment_Management_System.Models.emsInspectionT emsInspectionT in Model)
+                {
+                    <tr>
+                        <td>
+                            <button type="button" class="EditBtn btn btn-warning btn-xs glyphicon glyphicon-edit  modal-link"></button>
+                        </td>
+                        <td class="clsGRNNo">@emsInspectionT.GRNNo </td>
+                        <td class="clsSGStyle">@emsInspectionT.SGStyle</td>
+                        <td class="clsSGComponent">@emsInspectionT.SGComponent</td>
+                        <td  class="clsSO">@emsInspectionT.SO</td>
+                        <td  class="clsDocket">@emsInspectionT.Docket</td>
+                        <td  class="clsSize">@emsInspectionT.Size</td>
+                        <td  class="clsBatchId">@emsInspectionT.BatchId</td>
+                        <td  class="clsActualQty">@emsInspectionT.ActualQty</td>
+                        <td  class="clsDamageQty">@emsInspectionT.PassedQty</td>
+                        <td  class="clsDamageReverseQty"> @emsInspectionT.PassedReverseQty</td>
+                        <td  class="clsDamageQty">@emsInspectionT.DamageQty</td>
+                        <td  class="clsDamageReverseQty"> @emsInspectionT.DamageReverseQty</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    <!-- /.box-body -->
+
+<script>
+    $(document).ready(function () {
+
+        $('.table').on('click', '.EditBtn', function () {
+            var $row = $(this).closest("tr");
+             var GRNNo = $row.find(".clsGRNNo").text().trim();
+            var VendorGatepass = $row.find(".clsVendorGatepass").text().trim();
+            var SGStyle = $row.find(".clsSGStyle").text().trim();
+            var SGComponent = $row.find(".clsSGComponent").text().trim();
+            var SO = $row.find(".clsSO").text().trim();
+            var Docket = $row.find(".clsDocket").text().trim();
+            var Size = $row.find(".clsSize").text().trim();
+            var BatchId = $row.find(".clsBatchId").text().trim();
+
+            $.ajax({
+                url: '@Url.Action("ReverseInspectedItem", "Inspection")',
+                type: "POST",
+                data: {
+                    GRNNo: GRNNo,
+                    VendorGatepass: VendorGatepass,
+                    SGStyle: SGStyle,
+                    SGComponent: SGComponent,
+                    SO: SO,
+                    Docket: Docket,
+                    Size: Size,
+                    BatchId: BatchId
+                },
+                success: function (result) {
+                    $('#modal-container').html(result);
+                }
+            });
+
+        });
+    });
+
+
+    $('.table').on('search.dt', function () {
+        var value = $('.dataTables_filter input').val();
+        if (value != "" || value != null) $('#searchval').val(value);
+    });
+
+</script>
+
+
+@if (TempData["Message"] != null)
+{
+    MessageBox UserMessage = (MessageBox)TempData["Message"];
+    @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
+}

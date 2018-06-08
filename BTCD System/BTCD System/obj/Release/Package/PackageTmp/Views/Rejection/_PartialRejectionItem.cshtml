@@ -1,0 +1,119 @@
+﻿@model  Emblishment_Management_System.Models.emsRejectionT
+
+<div class="">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rejection Item Detail</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="box">
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @Id = "frmRejectionItem" }))
+                    {
+                    <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label>SG Component</label>
+                                    @Html.EditorFor(model => model.SGComponent, new { htmlAttributes = new { @class = "form-control", placeholder = "SG Component", @Id = "SGStyle", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.ID)
+                                 </div>
+
+                                <div class="form-group">
+                                    <label>Docket</label>
+                                    @Html.EditorFor(model => model.Docket, new { htmlAttributes = new { @class = "form-control", placeholder = "Docket", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.Docket)
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Qty</label> 
+                                    @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control", placeholder = "Qty" , @Id = "Qty" , @disabled = "disabled", @readonly = "readonly" } })
+                                 </div>
+
+                                <div class="form-group">
+                                    <label>Rejection Qty</label>
+                                    @Html.EditorFor(model => model.RejectionQty, new { htmlAttributes = new { @class = "form-control integer", placeholder = "Rejection Qty", @Id = "RejectionQty" } })
+                                    @Html.HiddenFor(model => model.RejectionQty)
+                                </div>
+                            </div>
+
+                            <div class="col-xs-4">
+                                <div class="form-group">
+                                    <label>Stock Type</label>
+                                    @Html.EditorFor(model => model.StockDescription, new { htmlAttributes = new { @class = "form-control", placeholder = "Stock Description", disabled = "disabled", @readonly = "readonly" } })
+                                    @Html.HiddenFor(model => model.StockDescription)
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Size</label>
+                                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", placeholder = "Size", disabled = "disabled", @readonly = "readonly" } })
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label>Rejection Reason</label>
+                                    @Html.DropDownListFor(model => model.RejReasonCode, (IEnumerable<SelectListItem>)(ViewBag.RejReason), "Select Rejection Reason", new { @class = "form-control select2", @style = "width: 100%;", required = "required" , @Id = "RejReasonCode" })
+                                </div>
+
+                               
+                                <div class="form-group">
+                                    <label>&nbsp;</label><br>
+                                    <button type="submit" class="btn btn-info" onclick="RejectionItem(this, event);">Submit</button>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                    }
+                    <!-- /.box -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default modal-close-btn" data-dismiss="modal">Close</button>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    function RejectionItem(ctrl, event) {
+        event.preventDefault();
+
+        var RejectionQty = parseInt($("#RejectionQty").val());
+        var Qty = parseInt($("#Qty").val());
+
+       
+        if ($('#RejReasonCode option:selected').val() == "")
+        {
+            $("#RejReasonCode").focus();
+            bootbox.alert('Please select a rejection reason.');
+        }
+        else if ((RejectionQty <= 0) || (Qty <= 0) || (Qty < RejectionQty)) {
+            $("#ReverseQty").focus();
+            bootbox.alert('You entered rejection qty is invalid.');
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("RejectItem", "Rejection")',
+                type: "POST",
+                data: $("form").serialize(),
+                success: function (result) {
+                    $("#divQCRejectPartialView").html(result);
+                    $('#modal-container').modal('hide');
+                }
+            });
+        }
+    }
+
+
+    //Textbox integer accept
+    $(".integer").keypress(function (e) {
+        if (e.which < 48 || e.which > 57) {
+            return (false);  // stop processing
+        }
+    });
+</script>

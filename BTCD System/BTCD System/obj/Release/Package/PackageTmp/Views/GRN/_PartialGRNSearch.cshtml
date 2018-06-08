@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Emblishment_Management_System.Models.emsGRN.emsGrnTH>
+
+<div class="modal-content" id="modal-container">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">GRN List</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Selection</th>
+                                    <th>GRN No     </th>
+                                    <th>GRN Date     </th>
+                                    <th>Location  </th>
+                                    <th>Vendor   </th>
+                                    <th>Vendor Gatepass</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Emblishment_Management_System.Models.emsGRN.emsGrnTH emsGrnTH in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @using (@Html.BeginForm("Reverse", "GRN", new { Id = @emsGrnTH.GRNNo }, FormMethod.Post))
+                                            {
+                                                <button type="submit" class="btn btn-success btn-xs btn-flat"> Select   </button>
+                                            }
+                                        </td>
+                                        <td> @emsGrnTH.GRNNo</td>
+                                        <td> @emsGrnTH.GRNDate</td>
+                                        <td> @emsGrnTH.LocationCode</td>
+                                        <td> @emsGrnTH.VendorCode</td>
+                                        <td> @emsGrnTH.VendorGatepass</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default modal-close-btn" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    //$(function () {
+    //    $('#approve-btn').click(function () {
+    //        $('#modal-container').data('modal', null);
+    //        $('#modal-container').modal('hide');
+    //    });
+    //});
+</script>
+
+
+
+

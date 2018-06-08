@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Emblishment_Management_System.Models.emsInspectionT>
+@using Emblishment_Management_System.Models
+
+@{
+    ViewBag.Title = "ViewPendingGRN";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Inspection Pending
+        <small></small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Transaction</a></li>
+        <li class="active">Inspection Pending</li>
+    </ol>
+    <style>
+        form {
+            display: inline;
+        }
+    </style>
+</section>
+
+
+<!-- Main content -->
+<section class="content">
+    <!-- Your Page Content Here -->
+    @using (Html.BeginForm("SaveInspection", "Inspection", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <input type="hidden" id="searchval" />
+
+        <div class="box box-default">
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12 btn-container-right">
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-primary">&nbsp;Save&nbsp;&nbsp;</button>
+                            <button type="button" class="btn btn-warning"> Home  </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Inspection Header Details</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body">
+                <div class="row">
+                    @foreach (emsInspectionT emsInspection in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>GRN No</label>
+                                @Html.EditorFor(model => emsInspection.GRNNo, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            </div>
+
+                            <div class="form-group">
+                                <label>Vendor</label>
+                                @Html.EditorFor(model => emsInspection.VendorName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>GRN Date</label>
+                                @Html.EditorFor(model => emsInspection.GRNDate , new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            </div>
+
+                            <div class="form-group">
+                                <label>Vendor Gate pass</label>
+                                @Html.EditorFor(model => emsInspection.VendorGatepass, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+                            </div>
+                        </div>
+                        break;
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm(null, null, FormMethod.Post))
+    {
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Inspection Item Details</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="divPartialInspectView">
+                            @{ Html.RenderPartial("_PartialInspectionDetails", Model); }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+<!-- /.content -->

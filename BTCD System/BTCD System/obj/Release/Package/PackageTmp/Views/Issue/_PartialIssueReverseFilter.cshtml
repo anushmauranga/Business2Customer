@@ -1,0 +1,51 @@
+﻿<div class="col-md-4">
+    <div class="form-group">
+        <label>Issue No</label>
+        @Html.Editor("IssueNo", "IssueNo", new { htmlAttributes = new { @class = "form-control", placeholder = "Issue No", @Id = "IssueNo", @autocomplete = "off" } })
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    //AutoComplete for SGStyle
+    $(function () {
+        $("#IssueNo").typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1,
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("AutoCompleteIssueNo", "Issue")',
+                    data: "{ 'prefix': '" + request + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        items = [];
+                        map = {};
+                        $.each(data, function (i, item) {
+                            var id = item.value;
+                            var name = item.text;
+                            map[name] = { id: id, name: name };
+                            items.push(name);
+                        });
+                        response(items);
+                        $(".dropdown-menu").css("height", "auto");
+                    }
+                });
+            },
+            updater: function (item) {
+                $.ajax({
+                    url: '@Url.Action("getIssueDetailsFromIssueNo", "Issue")',
+                    type: "POST",
+                    data: { IssueNo: map[item].id },
+                    success: function (data) {
+                        $("#divReverseDetails").html(data);;
+                    }
+                });
+
+                return item;
+            }
+        });
+    });
+</script>
