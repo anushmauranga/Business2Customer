@@ -1855,6 +1855,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BTCD_DL\Master\clsM_Category.cs" />
+    <Compile Include="BTCD_DL\Master\clsM_Item.cs" />
+    <Compile Include="BTCD_DL\Transaction\clsT_Bids.cs" />
+    <Compile Include="BTCD_DL\Transaction\clsT_Stock.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsTrnController.cs" />
@@ -2004,7 +2008,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BTCD_DL\Transaction\" />
     <Folder Include="Views\ASPX\" />
   </ItemGroup>
   <PropertyGroup>
