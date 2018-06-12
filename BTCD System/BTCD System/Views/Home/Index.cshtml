@@ -1,10 +1,8 @@
-﻿@using Emblishment_Management_System.Emblishment_DL.Dashboard
-
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 
-    clsU_Dashboard clsU_Dashboard = new clsU_Dashboard();
 }
 
 <!-- Content Header (Page header) -->
@@ -21,42 +19,22 @@
 
 <!-- Main content -->
 <section class="content">
-    <!-- Your Page Content Here -->
 
-    <!-- Small boxes (Stat box) -->
     <div class="row">
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-green">
-                <div class="inner">
-                    <h3>@clsU_Dashboard.GetPendingGRNCount()</h3>
-                    <p>Pending Inspection</p>
-                </div>
-                <div class="icon">
-                    <i class="ion ion-bag"></i>
-                </div>
-                <a href="~/Inspection/Index" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-            </div>
+        <div class="col-sm-4">
+            <a href="http://www.ubh.com" class="tile green btn btn-primary btn-lg active">
+                <h3 class="title">Fruit</h3>
+                <p>Short, sweet data point goes here.</p>
+            </a>
         </div>
 
+        <div class="col-sm-4">
+            <a href="http://www.ubh.com" class="tile green">
+                <h3 class="title">Vegitable</h3>
+                <p>Short, sweet data point goes here.</p>
+            </a>
+        </div>
 
-        @*<div class="col-md-3">
-            <div class="box box-danger">
-                <div class="box-header">
-                    <h3 class="box-title">Loading state</h3>
-                </div>
-                <div class="box-body">
-                    The body of the box
-                </div>
-                <!-- /.box-body -->
-                <!-- Loading (remove the following to stop the loading)-->
-                <div class="overlay">
-                    <i class="fa fa-refresh fa-spin"></i>
-                </div>
-                <!-- end loading -->
-            </div>
-            <!-- /.box -->
-        </div>*@
     </div>
 </section>
 <!-- /.content -->

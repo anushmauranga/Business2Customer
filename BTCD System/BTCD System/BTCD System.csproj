@@ -118,8 +118,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
-    <Content Include="bin\Emblishment Management System.dll" />
-    <Content Include="bin\Emblishment Management System.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
@@ -183,6 +181,7 @@
     <Content Include="Content\adminlte\img\credit\paypal.png" />
     <Content Include="Content\adminlte\img\credit\paypal2.png" />
     <Content Include="Content\adminlte\img\credit\visa.png" />
+    <Content Include="Content\bootstrap-tile\bootstraptiles.css" />
     <Content Include="Images\pageload.gif" />
     <Content Include="Images\Preloader_2.gif" />
     <Content Include="Content\adminlte\img\user.png" />
@@ -1771,7 +1770,6 @@
     <Content Include="Scripts\bootstrap\js\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\bootstrap\js\npm.js" />
     <Content Include="Scripts\iCheck\icheck.min.js" />
-    <Content Include="bin\Emblishment Management System.dll.config" />
     <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
     <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
@@ -1975,9 +1973,6 @@
     <Content Include="Views\StockType\Details.cshtml" />
     <Content Include="Views\StockType\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Bins\Create.cshtml" />
-    <Content Include="Views\Bins\Edit.cshtml" />
-    <Content Include="Views\Bins\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />

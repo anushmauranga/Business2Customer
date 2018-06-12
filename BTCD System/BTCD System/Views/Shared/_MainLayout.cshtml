@@ -1,10 +1,10 @@
 ﻿@using System.Web
 @using System.Web.Optimization
-@using Emblishment_Management_System.Emblishment_DL.User
-@using Emblishment_Management_System.Common
-@using Emblishment_Management_System.Models
+@using BTCD_System.BTCD_DL.User
+@using BTCD_System.Common
+@using BTCD_System.Models
 
-@{List<emsRecentActivityU> emsRecentActivity;}
+@{List<RecentActivityU> emsRecentActivity;}
 
 <!DOCTYPE html>
 <!--
@@ -402,24 +402,11 @@ desired effect
                         }
                         else
                         {
-                            emsRecentActivity = new List<emsRecentActivityU>();
+                            emsRecentActivity = new List<RecentActivityU>();
                         }
                     }
 
-                    @foreach (emsRecentActivityU emsRecentActivityU in emsRecentActivity)
-                    {
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="#">
-                                <i class="menu-icon fa fa-history bg-info"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">@commonFunctions.GetRecentActivityDescription(emsRecentActivityU.TransactionType, emsRecentActivityU.RecordType)</h4>
-                                    <p>@emsRecentActivityU.Description</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    }
+         
                     <!-- /.control-sidebar-menu -->
                     @*<h3 class="control-sidebar-heading">Tasks Progress</h3>
                     <ul class="control-sidebar-menu">
