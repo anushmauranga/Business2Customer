@@ -13,6 +13,7 @@ namespace BTCD_System.Models
         public int UserId { get; set; }
         public int LocationId { get; set; }
         public int GradeId { get; set; }
+        public string Grade { get; set; }
         public decimal Quantity { get; set; }
         public decimal RemainQuantity { get; set; }
         public int UOMId { get; set; }
