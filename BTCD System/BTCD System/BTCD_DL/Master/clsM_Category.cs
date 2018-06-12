@@ -42,8 +42,8 @@ namespace BTCD_System.BTCD_DL.Master
                 return _lstCategory;
             }
         }
-
+        #endregion
     }
 
-    #endregion
+
 }
