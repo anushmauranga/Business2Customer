@@ -83,6 +83,19 @@ namespace BTCD_System.Common
             }
         }
 
+        public static int GetTransactionUserCode()
+        {
+            try
+            {
+                var idendity = (HttpContext.Current.User as clsPrincipal).Identity as clsIdentity;
+                return idendity.User.UserCode;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
         public static string GetRecentActivityDescription(short TransactionType,short RecordType)
         {
             string Transvalue = string.Empty;

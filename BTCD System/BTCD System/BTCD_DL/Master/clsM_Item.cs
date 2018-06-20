@@ -12,8 +12,8 @@ namespace BTCD_System.BTCD_DL.Master
         #region Fields
 
         private SqlParameter[] p;
-        private List<ItemM> _lstItem;
-        private SqlDataReader _reader;
+        private List<ItemM> lstItem;
+        private SqlDataReader reader;
 
         #endregion
 
@@ -21,27 +21,55 @@ namespace BTCD_System.BTCD_DL.Master
 
         public List<ItemM> GetItemsByCategories(int category)
         {
-            _lstItem = new List<ItemM>();
+            lstItem = new List<ItemM>();
             p = new SqlParameter[1];
 
             p[0] = new SqlParameter("@CategoryId", SqlDbType.Int) { Value = category };
-            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemByCategory", p))
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemByCategory", p))
             {
-                while (_reader.Read())
+                while (reader.Read())
                 {
-                    _lstItem.Add(new ItemM
+                    lstItem.Add(new ItemM
                     {
-                        ItemId = int.Parse(_reader["ItemId"].ToString()),
-                        CategoryId = int.Parse(_reader["CategoryId"].ToString()),
-                        ItemCode = int.Parse(_reader["ItemCode"].ToString()),
-                        ItemName = _reader["ItemName"].ToString(),
-                        Description = _reader["Description"].ToString()
+                        ItemId = int.Parse(reader["ItemId"].ToString()),
+                        CategoryId = int.Parse(reader["CategoryId"].ToString()),
+                        ItemCode = reader["ItemCode"].ToString(),
+                        ItemName = reader["ItemName"].ToString(),
+                        Description = reader["Description"].ToString()
                     });
                 }
 
-                return _lstItem;
+                return lstItem;
             }
         }
+
+
+        public ItemM GetItemByItemId(int ItemId)
+        {
+
+            ItemM ItemM = new ItemM();
+
+            p = new SqlParameter[1];
+            p[0] = new SqlParameter("@ItemId", SqlDbType.Int) { Value = ItemId };
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemByItemId", p))
+            {
+                while (reader.Read())
+                {
+                    ItemM = new ItemM
+                    {
+                        ItemId = int.Parse(reader["ItemId"].ToString()),
+                        CategoryId = int.Parse(reader["CategoryId"].ToString()),
+                        ItemCode = reader["ItemCode"].ToString(),
+                        ItemName = reader["ItemName"].ToString(),
+                        Description = reader["Description"].ToString()
+                    };
+                }
+
+                return ItemM;
+            }
+        }
+
         #endregion
     }
 }

@@ -10,6 +10,7 @@ namespace BTCD_System.Models
     public class UserU
     {
         public int  Id { get; set; }
+        public int UserCode { get; set; }
 
         [Required]
         [Display(Name = "EPF")]

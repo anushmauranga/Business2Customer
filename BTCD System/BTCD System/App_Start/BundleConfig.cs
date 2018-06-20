@@ -41,8 +41,8 @@ namespace BTCD_System
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
             "~/Content/bootstrap/css/bootstrap.min.css",
-            "~/Content/bootstrap/css/bootstrap.min.css",
             "~/Content/bootstrap-tile/bootstraptiles.css",
+            "~/Content/font-awesome/css/font-awesome.min.css",
             "~/Content/Ionicons/css/ionicons.min.css",
             "~/Content/select2/css/select2.min.css",
             "~/Content/adminlte/css/AdminLTE.min.css",

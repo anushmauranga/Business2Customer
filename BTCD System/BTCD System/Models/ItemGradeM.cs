@@ -8,6 +8,7 @@ namespace BTCD_System.Models
 {
     public class ItemGradeM
     {
+        public int GradeId { get; set; }
         public int ItemId { get; set; }
         public string Grade { get; set; }
         public string GradeDescription { get; set; }

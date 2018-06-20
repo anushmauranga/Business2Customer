@@ -27,11 +27,15 @@ namespace BTCD_System
             if (authoCookies != null)
             {
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authoCookies.Value);
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                UserU user = js.Deserialize<UserU>(ticket.UserData);
-                clsIdentity clsIdentity = new clsIdentity(user);
-                clsPrincipal clsPrincipal = new clsPrincipal(clsIdentity);
-                HttpContext.Current.User = clsPrincipal;
+
+                if (ticket != null && !ticket.Expired)
+                {
+                    JavaScriptSerializer js = new JavaScriptSerializer();
+                    UserU user = js.Deserialize<UserU>(ticket.UserData);
+                    clsIdentity clsIdentity = new clsIdentity(user);
+                    clsPrincipal clsPrincipal = new clsPrincipal(clsIdentity);
+                    HttpContext.Current.User = clsPrincipal;
+                }
             }
         }
     }

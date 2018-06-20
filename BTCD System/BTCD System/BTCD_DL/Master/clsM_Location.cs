@@ -15,7 +15,7 @@ namespace BTCD_System.BTCD_DL.Master
         #region Fields
 
         private SqlParameter[] p;
-        private List<LocationM> _lstLocation;
+        private List<LocationM> lstLocation;
         private SqlDataReader _reader;
 
         #endregion
@@ -53,30 +53,30 @@ namespace BTCD_System.BTCD_DL.Master
 
         public List<LocationM> GetAllLocations()
         {
-            _lstLocation = new List<LocationM>();
-            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spGSelectAllFromLocationsM"))
+            lstLocation = new List<LocationM>();
+            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spSelectAllFromLocationsM"))
             {
                 while (_reader.Read())
                 {
-                    _lstLocation.Add(new LocationM
+                    lstLocation.Add(new LocationM
                     {
-                        //ID = int.Parse(_reader["ID"].ToString()),
-                        //LocationCode = _reader["LocationCode"].ToString(),
-                        //Description = _reader["Description"].ToString()
+                        LocationId = int.Parse(_reader["LocationId"].ToString()),
+                        LocationCode = _reader["LocationCode"].ToString(),
+                        LocationName = _reader["LocationName"].ToString()
                     });
                 }
 
-                return _lstLocation;
+                return lstLocation;
             }
         }
 
 
 
-        public bool DeleteLocation(LocationM emsLocation)
+        public bool DeleteLocation(LocationM Location)
         {
             p = new SqlParameter[2];
 
-            p[0] = new SqlParameter("@LocationCode", SqlDbType.VarChar) { Value = emsLocation.LocationCode };
+            p[0] = new SqlParameter("@LocationCode", SqlDbType.VarChar) { Value = Location.LocationCode };
             //p[1] = new SqlParameter("@TrnUser", SqlDbType.VarChar) { Value = emsLocation.TrnUser };
 
             return SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,

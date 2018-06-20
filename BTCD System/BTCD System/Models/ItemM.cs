@@ -9,7 +9,7 @@ namespace BTCD_System.Models
     {
         public int ItemId { get; set; }
         public int CategoryId { get; set; }
-        public int ItemCode { get; set; }
+        public string ItemCode { get; set; }
         public string ItemName { get; set; }
         public string Description { get; set; }
 

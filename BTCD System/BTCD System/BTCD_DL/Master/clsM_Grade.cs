@@ -12,25 +12,27 @@ namespace BTCD_System.BTCD_DL.Master
         #region Fields
 
         private SqlParameter[] p;
-        private List<ItemGradeM> _lstItemGrade;
+        private List<ItemGradeM> lstItemGrade;
         private SqlDataReader _reader;
 
         #endregion
 
         #region Methods
 
-        public List<ItemGradeM> GetItemGradeByItemId(int itemId)
+        public List<ItemGradeM> GetItemGradeByItemId(int ItemId)
         {
-            _lstItemGrade = new List<ItemGradeM>();
-            p = new SqlParameter[1];
+            lstItemGrade = new List<ItemGradeM>();
 
-            p[0] = new SqlParameter("@ItemId", SqlDbType.Int) { Value = itemId };
-            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemGrades", p))
+            p = new SqlParameter[1];
+            p[0] = new SqlParameter("@ItemId", SqlDbType.Int) { Value = ItemId };
+
+            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemGradesByItem", p))
             {
                 while (_reader.Read())
                 {
-                    _lstItemGrade.Add(new ItemGradeM
+                    lstItemGrade.Add(new ItemGradeM
                     {
+                        GradeId = int.Parse(_reader["GradeId"].ToString()),
                         ItemId = int.Parse(_reader["ItemId"].ToString()),
                         Grade = _reader["Grade"].ToString(),
                         GradeDescription = _reader["GradeDescription"].ToString(),
@@ -38,7 +40,30 @@ namespace BTCD_System.BTCD_DL.Master
                     });
                 }
 
-                return _lstItemGrade;
+                return lstItemGrade;
+            }
+        }
+
+
+        public List<ItemGradeM> GetAllGrades()
+        {
+            lstItemGrade = new List<ItemGradeM>();
+
+            using (_reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectAllFromItemGrades"))
+            {
+                while (_reader.Read())
+                {
+                    lstItemGrade.Add(new ItemGradeM
+                    {
+                        GradeId = int.Parse(_reader["GradeId"].ToString()),
+                        ItemId = int.Parse(_reader["ItemId"].ToString()),
+                        Grade = _reader["Grade"].ToString(),
+                        GradeDescription = _reader["GradeDescription"].ToString(),
+                        GradeLevel = int.Parse(_reader["GradeLevel"].ToString())
+                    });
+                }
+
+                return lstItemGrade;
             }
         }
         #endregion

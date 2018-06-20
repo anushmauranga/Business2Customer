@@ -1,8 +1,8 @@
-﻿@model  IEnumerable<BTCD_System.Models.CategoryM>
+﻿@model  IEnumerable<BTCD_System.Models.ItemM>
 @using BTCD_System.Models;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Item Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 
 }
@@ -25,13 +25,13 @@
 
     @{ int count = 0; bool IsRow = true; }
 
-    @foreach(CategoryM CategoryM in Model)
+    @foreach (ItemM ItemM in Model)
     {
         count++;
 
         if (IsRow == true)
         {
-           @:<div class="row">
+            @:<div class="row">
         }
 
         if (count <= 4)
@@ -41,9 +41,9 @@
             Tile tile = new Tile();
 
             tile.Controller = "Item";
-            tile.Action = "Create";
-            tile.Value = CategoryM.CategoryId.ToString();
-            tile.Subject = CategoryM.CategoryName;
+            tile.Action = "CreateStock";
+            tile.Value = ItemM.ItemId.ToString();
+            tile.Subject = ItemM.ItemName;
 
             Html.RenderPartial("~/Views/Shared/_Tile.cshtml", tile);
         }
@@ -58,3 +58,4 @@
 
 </section>
 <!-- /.content -->
+

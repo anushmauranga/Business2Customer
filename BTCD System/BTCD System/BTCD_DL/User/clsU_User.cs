@@ -114,6 +114,7 @@ namespace BTCD_System.BTCD_DL.User
                         while (dr.Read())
                         {
                             user.Id = int.Parse(dr["ID"].ToString());
+                            user.UserCode = int.Parse(dr["UserCode"].ToString());
                             user.Epf = dr["EPF"].ToString();
                             user.Username = dr["Username"].ToString();
                             user.Password = dr["Password"].ToString();
@@ -224,8 +225,7 @@ namespace BTCD_System.BTCD_DL.User
                 p[9] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
                 p[9].Direction = ParameterDirection.Output;
 
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,
-                    "spUserCrate", p);
+                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserCrate", p);
                 return p[9].Value.ToString();
             }
             catch (Exception ex)
@@ -261,8 +261,7 @@ namespace BTCD_System.BTCD_DL.User
                 p[8] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
                 p[8].Direction = ParameterDirection.Output;
 
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,
-                    "spUserEdit", p);
+                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserEdit", p);
                 return p[8].Value.ToString();
             }
             catch (Exception ex)
@@ -288,8 +287,7 @@ namespace BTCD_System.BTCD_DL.User
                 p[3] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
                 p[3].Direction = ParameterDirection.Output;
 
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,
-                    "spUserChangePassword", p);
+                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserChangePassword", p);
                 return p[8].Value.ToString();
             }
             catch (Exception ex)
@@ -306,8 +304,7 @@ namespace BTCD_System.BTCD_DL.User
             p[0]= new SqlParameter("@UserID",SqlDbType.Int,0);
             p[0].Value = UserID;
 
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),
-                CommandType.StoredProcedure, "spUserSelectRolesByUserId", p))
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spUserSelectRolesByUserId", p))
             {
                 List<UserRoleTUview> userRoleList = new List<UserRoleTUview>();
 
@@ -377,8 +374,7 @@ namespace BTCD_System.BTCD_DL.User
             p[0] = new SqlParameter("@Username", SqlDbType.VarChar, 0);
             p[0].Value = username;
 
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),
-                 CommandType.StoredProcedure, "spRolesSelectAllRolesNotAssignedForUser", p))
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),CommandType.StoredProcedure, "spRolesSelectAllRolesNotAssignedForUser", p))
             {
 
                 List<UserRoleU> userRoles = new List<UserRoleU>();
@@ -417,8 +413,7 @@ namespace BTCD_System.BTCD_DL.User
                 p[3] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
                 p[3].Direction = ParameterDirection.Output;
 
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,
-                    "spUserAddRole", p);
+                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserAddRole", p);
                 return p[3].Value.ToString();
             }
             catch (Exception ex)
@@ -444,8 +439,7 @@ namespace BTCD_System.BTCD_DL.User
                 p[3] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
                 p[3].Direction = ParameterDirection.Output;
 
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,
-                    "spUserDeleteRole", p);
+                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserDeleteRole", p);
                 return p[3].Value.ToString();
             }
             catch (Exception ex)

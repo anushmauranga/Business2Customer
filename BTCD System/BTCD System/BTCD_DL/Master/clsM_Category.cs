@@ -8,9 +8,6 @@ using System.Data.SqlClient;
 namespace BTCD_System.BTCD_DL.Master
 {
 
-
-
-
     public class clsM_Category
     {
 
