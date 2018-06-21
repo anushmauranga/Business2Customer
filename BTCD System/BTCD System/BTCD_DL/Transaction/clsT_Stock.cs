@@ -165,7 +165,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                 p[5].Value = StockM.UOMId;
                 p[6] = new SqlParameter("@UnitPrice", SqlDbType.Decimal);
                 p[6].Value = StockM.UnitPrice;
-                p[7] = new SqlParameter("@Result", SqlDbType.VarChar,400);
+                p[7] = new SqlParameter("@Result", SqlDbType.VarChar, 400);
                 p[7].Direction = ParameterDirection.Output;
                 p[8] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
                 p[8].Direction = ParameterDirection.Output;
@@ -190,7 +190,70 @@ namespace BTCD_System.BTCD_DL.Transaction
             p = new SqlParameter[1];
 
             p[0] = new SqlParameter("@UserCode", SqlDbType.Int) { Value = UserCode };
-            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "@UserCode", p))
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectTotalStockByUserCode", p))
+            {
+                while (reader.Read())
+                {
+                    lstStock.Add(new StockM
+                    {
+                        StockId = int.Parse(reader["StockId"].ToString()),
+                        ItemId = int.Parse(reader["ItemId"].ToString()),
+                        ItemName = reader["ItemName"].ToString(),
+                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        LocationId = int.Parse(reader["LocationId"].ToString()),
+                        GradeId = int.Parse(reader["GradeId"].ToString()),
+                        Grade = reader["Grade"].ToString(),
+                        Quantity = decimal.Parse(reader["Quantity"].ToString()),
+                        RemainQuantity = decimal.Parse(reader["RemainQuantity"].ToString()),
+                        UOMId = int.Parse(reader["UOMId"].ToString()),
+                        UOMName = reader["UOMName"].ToString(),
+                        UnitPrice = decimal.Parse(reader["UnitPrice"].ToString()),
+                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
+                    });
+                }
+                return lstStock;
+            }
+        }
+
+        public StockM GetStockDetailByStockId(int StockId)
+        {
+            StockM Stock = new StockM();
+            p = new SqlParameter[1];
+
+            p[0] = new SqlParameter("@StockId", SqlDbType.Int) { Value = StockId };
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectStockByStockId", p))
+            {
+                while (reader.Read())
+                {
+                    Stock = new StockM
+                    {
+                        StockId = int.Parse(reader["StockId"].ToString()),
+                        ItemId = int.Parse(reader["ItemId"].ToString()),
+                        ItemName = reader["ItemName"].ToString(),
+                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        LocationId = int.Parse(reader["LocationId"].ToString()),
+                        GradeId = int.Parse(reader["GradeId"].ToString()),
+                        Grade = reader["Grade"].ToString(),
+                        Quantity = decimal.Parse(reader["Quantity"].ToString()),
+                        UOMId = int.Parse(reader["UOMId"].ToString()),
+                        UOMName = reader["UOMName"].ToString(),
+                        UnitPrice = decimal.Parse(reader["UnitPrice"].ToString()),
+                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
+                    };
+                }
+                return Stock;
+            }
+        }
+
+
+        public List<StockM> GetStock()
+        {
+            lstStock = new List<StockM>();
+
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectTotalStock"))
             {
                 while (reader.Read())
                 {

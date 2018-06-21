@@ -31,6 +31,9 @@ namespace BTCD_System.Models
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        // Reference 
+        public decimal RequestQuantity { get; set; }
+        public decimal RequestUnitPrice { get; set; }
 
     }
 }

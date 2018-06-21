@@ -1866,6 +1866,7 @@
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ReportsTrnController.cs" />
+    <Compile Include="Controllers\RequestController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="BTCD_DL\Dashboard\clsU_Dashboard.cs" />
@@ -2009,7 +2010,10 @@
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Shared\_Tile.cshtml" />
     <Content Include="Views\Item\Category.cshtml" />
-    <Content Include="Views\Item\CreateStock.cshtml" />
+    <Content Include="Views\Stock\ViewStock.cshtml" />
+    <Content Include="Views\Stock\ViewMyStock.cshtml" />
+    <Content Include="Views\Request\Create.cshtml" />
+    <Content Include="Views\Stock\CreateStock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2020,7 +2024,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ASPX\" />
-    <Folder Include="Views\Stock\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

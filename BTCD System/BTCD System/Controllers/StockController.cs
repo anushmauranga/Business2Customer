@@ -15,9 +15,16 @@ namespace BTCD_System.Controllers
         private List<StockM> lstStock;
 
 
+        public ActionResult ViewMyStock()
+        {
+            lstStock = new clsT_Stock().GetStockByUserCode(-1);
+
+            return View(lstStock);
+        }
+
         public ActionResult ViewStock()
         {
-            lstStock = new clsT_Stock().GetStockByUserCode(commonFunctions.GetTransactionUserCode());
+            lstStock = new clsT_Stock().GetStock();
 
             return View(lstStock);
         }
