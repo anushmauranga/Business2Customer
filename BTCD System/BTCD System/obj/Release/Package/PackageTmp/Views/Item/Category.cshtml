@@ -10,12 +10,12 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Dashboard
-        <small>Control panel</small>
+        Category
+        <small>Select Item Category</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Item</a></li>
+        <li class="active">Category</li>
     </ol>
 </section>
 
@@ -25,13 +25,13 @@
 
     @{ int count = 0; bool IsRow = true; }
 
-    @foreach(CategoryM CategoryM in Model)
+    @foreach (CategoryM CategoryM in Model)
     {
         count++;
 
         if (IsRow == true)
         {
-           @:<div class="row">
+            @:<div class="row">
         }
 
         if (count <= 4)
@@ -41,7 +41,7 @@
             Tile tile = new Tile();
 
             tile.Controller = "Item";
-            tile.Action = "Create";
+            tile.Action = "Details";
             tile.Value = CategoryM.CategoryId.ToString();
             tile.Subject = CategoryM.CategoryName;
 

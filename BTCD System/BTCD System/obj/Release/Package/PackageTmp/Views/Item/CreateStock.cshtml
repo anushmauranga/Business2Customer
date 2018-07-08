@@ -23,7 +23,7 @@
 <!-- Main content -->
 <section class="content">
     <!-- Your Page Content Here -->
-    @using (Html.BeginForm("CreateStock", "Stock", FormMethod.Post, new { @Id = "frmItem" }))
+    @using (Html.BeginForm("CreateStock", "Item", FormMethod.Post, new { @Id = "frmItem" }))
     {
         @Html.AntiForgeryToken()
 

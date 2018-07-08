@@ -13,9 +13,11 @@ namespace BTCD_System.Controllers
     public class RequestController : Controller
     {
         private clsT_Stock clsT_Stock = new clsT_Stock();
+        private clsT_Bids clsT_Bids = new clsT_Bids();
         private List<StockM> lstStock;
+        private List<RequestT> lstRequest;
         private StockM Stock;
-
+        private BidsM Bids;
 
         private List<SelectListItem> ListItem;
         private List<LocationM> lstLocation;
@@ -30,29 +32,29 @@ namespace BTCD_System.Controllers
         [HttpPost]
         public ActionResult Create(int StockId)
         {
-            
             Stock = new clsT_Stock().GetStockDetailByStockId(StockId);
+            Bids = new BidsM { StockId = Stock.StockId, ItemId = Stock.ItemId, ItemCode = Stock.ItemCode, ItemName = Stock.ItemName, LocationId = Stock.LocationId, GradeId = Stock.GradeId, UOMId = Stock.UOMId, Quantity = Stock.Quantity, UnitPrice = Stock.UnitPrice };
 
             ViewBag.Location = getLocation();
             ViewBag.Grade = GetItemGrade(Stock.ItemId);
             ViewBag.UOM = getUOM();
 
-            return View(Stock);
+            return View(Bids);
         }
 
 
         [HttpPost]
         public ActionResult SaveRequest()
         {
-            StockM stock = new StockM();
+            BidsM Bids = new BidsM();
 
-            TryUpdateModel(stock);
+            TryUpdateModel(Bids);
 
             if (ModelState.IsValid)
             {
-                stock.UserCode = commonFunctions.GetTransactionUserCode();
+                Bids.RequestedBy = commonFunctions.GetTransactionUserCode();
 
-                ErrorMsg = clsT_Stock.SaveStock(stock, out RequestNo);
+                ErrorMsg = clsT_Bids.SaveRequest(Bids, out RequestNo);
 
 
                 if (!string.IsNullOrEmpty(ErrorMsg))
@@ -60,21 +62,21 @@ namespace BTCD_System.Controllers
                     TempData["Message"] = new MessageBox { CssClassName = ".alert-danger", Title = "Error!", Message = "Transaction was rollback.Try again." };
 
                     ViewBag.Location = getLocation();
-                    ViewBag.Grade = GetItemGrade(stock.ItemId);
+                    ViewBag.Grade = GetItemGrade(Bids.ItemId);
                     ViewBag.UOM = getUOM();
 
-                    return View(stock);
+                    return RedirectToAction("Create", Bids.StockId);
                 }
                 else
                 {
 
                     ViewBag.Location = getLocation();
-                    ViewBag.Grade = GetItemGrade(stock.ItemId);
+                    ViewBag.Grade = GetItemGrade(Bids.StockId);
                     ViewBag.UOM = getUOM();
 
                     TempData["Message"] = new MessageBox { CssClassName = ".alert-success", Title = "Success!", Message = "Your Request No: " + RequestNo };
 
-                    return RedirectToAction("Create", stock.StockId);
+                    return RedirectToAction("ViewStock", "Stock");
                 }
             }
 
@@ -82,6 +84,20 @@ namespace BTCD_System.Controllers
 
         }
 
+
+
+        [HttpPost]
+        public ActionResult ViewRequest(int StockId)
+        {
+            lstRequest = new List<RequestT>();
+
+            if (StockId != 0)
+            {
+                lstRequest = clsT_Bids.ViewRequest(StockId);
+            }
+
+            return View(lstRequest);
+        }
 
 
         [NonAction]
@@ -128,6 +144,30 @@ namespace BTCD_System.Controllers
             }
 
             return ListItem;
+        }
+
+
+        [HttpPost]
+        public ActionResult Accept(int RequirementId,int StockId)
+        {
+            if (RequirementId != 0)
+            {
+                clsT_Bids.ApproveRequest(RequirementId);
+            }
+
+            return RedirectToAction("ViewMyStock", "Stock");
+        }
+
+
+        [HttpPost]
+        public ActionResult Reject(int RequirementId, int StockId)
+        {
+            if (RequirementId != 0)
+            {
+                clsT_Bids.RejectRequest(RequirementId);
+            }
+
+            return RedirectToAction("ViewMyStock", "Stock");
         }
     }
 }

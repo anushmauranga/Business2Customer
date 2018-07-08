@@ -286,8 +286,7 @@ desired effect
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU</li>
                     <!-- Optionally, you can add icons to the links -->
-                    @*<li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                    <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>*@
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-user-circle"></i> <span>Administration</span>
@@ -307,14 +306,8 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Vendor/Index"><i class="fa fa-address-card-o"></i> Vendor</a></li>
-                            <li><a href="~/Location/Index"><i class="fa fa-bank"></i> Location</a></li>
-                            <li><a href="~/Bins/Index"><i class="fa fa-suitcase"></i> Bins</a></li>
-                            <li><a href="~/Components/Index"><i class="fa fa-newspaper-o"></i> Components</a></li>
-                            <li><a href="~/DamegeCategory/Index"><i class="fa fa-exclamation-triangle"></i> Damege Category</a></li>
-                            <li><a href="~/DamageReasons/Index"><i class="fa fa-exclamation-circle"></i> Damege Reasons</a></li>
-                            <li><a href="~/StockType/Index"><i class="fa fa-cubes"></i> Stock Type</a></li>
-                            <li><a href="~/RejectionReasons/Index"><i class="fa fa-exclamation"></i> Rejection Reasons</a></li>
+                            <li><a href="~/Stock/ViewStock"><i class="fa fa-times-circle-o"></i>View All Stock</a></li>
+                            <li><a href="~/Stock/ViewMyStock"><i class="fa fa-check-square-o"></i>View My Stock</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -325,29 +318,18 @@ desired effect
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/GRN/Create"><i class="fa fa-server"></i>GRN</a></li>
-                            <li><a href="~/GRN/Reverse"><i class="fa fa-server"></i>GRN Reverse</a></li>
-                            @*<li><a href="~/Rejection/Create"><i class="fa fa-times-circle-o"></i>Rejection</a></li>*@
 
                             <li class="treeview">
                                 <a href="#">
-                                    <i class="fa fa-times-circle-o"></i> <span>Rejection</span>
+                                    <i class="fa fa-times-circle-o"></i> <span>Item</span>
                                     <span class="pull-right-container">
                                         <i class="fa fa-angle-left pull-right"></i>
                                     </span>
                                 </a>
                                 <ul class="treeview-menu">
-                                    <li><a href="~/Rejection/Create/1"><i class="fa fa-check-circle-o"></i>QC Pass</a></li>
-                                    <li><a href="~/Rejection/Create/0"><i class="fa fa-ban"></i>QC Fail</a></li>
+                                    <li><a href="~/Item/Category"><i class="fa fa-check-circle-o"></i>Create</a></li>
                                 </ul>
                             </li>
-
-                            <li><a href="~/Rejection/Reverse"><i class="fa fa-times-circle-o"></i>Rejection Reverse</a></li>
-                            <li><a href="~/Inspection/Index"><i class="fa fa-check-square-o"></i>Inspection</a></li>
-                            <li><a href="~/Inspection/Reverse"><i class="fa fa-check-square-o"></i>Inspection Reverse</a></li>
-                            <li><a href="~/Issue/Create"><i class="fa fa-exchange"></i>Issue</a></li>
-                            <li><a href="~/Issue/Reverse"><i class="fa fa-exchange"></i>Issue Reverse</a></li>
-                            <li><a href="~/BinTransfer/Create"><i class="fa fa-retweet"></i>Bin Transfer</a></li>
                         </ul>
                     </li>
                     <li class="treeview">

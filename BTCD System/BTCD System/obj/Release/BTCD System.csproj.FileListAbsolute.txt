@@ -1,0 +1,20 @@
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\csc.exe
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\System.Collections.Immutable.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\System.Reflection.Metadata.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\vbc.exe
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\VBCSCompiler.exe
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\roslyn\VBCSCompiler.exe.config
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\BTCD System.dll.config
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\BTCD System.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\BTCD System.pdb
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\Microsoft.ReportViewer.WebForms.DLL
+D:\Business2Customer\trunk\BTCD System\BTCD System\bin\ReportViewerForMvc.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\obj\Release\BTCD System.csprojResolveAssemblyReference.cache
+D:\Business2Customer\trunk\BTCD System\BTCD System\obj\Release\BTCD System.dll
+D:\Business2Customer\trunk\BTCD System\BTCD System\obj\Release\BTCD System.pdb

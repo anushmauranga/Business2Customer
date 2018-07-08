@@ -75,7 +75,7 @@ namespace BTCD_System.Controllers
 
                 if (!string.IsNullOrEmpty(ErrorMsg))
                 {
-                    TempData["Message"] = new MessageBox { CssClassName = ".alert-danger", Title = "Error!", Message = "Transaction was rollback.Try again." };
+                    TempData["Message"] = new MessageBox { CssClassName = ".alert-danger", Title = "Error!", Message = "Transaction was rollback.Try again.<br>"  };
 
                     ViewBag.Location = getLocation();
                     ViewBag.Grade = GetItemGrade(stock.ItemId);

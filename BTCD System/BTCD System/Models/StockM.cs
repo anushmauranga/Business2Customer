@@ -26,14 +26,10 @@ namespace BTCD_System.Models
         [Required]
         public int UOMId { get; set; }
         public string UOMName { get; set; }
+
         [Required]
         public decimal UnitPrice { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
-
-        // Reference 
-        public decimal RequestQuantity { get; set; }
-        public decimal RequestUnitPrice { get; set; }
-
     }
 }

@@ -1781,6 +1781,7 @@
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Properties\PublishProfiles\BTCD.pubxml" />
     <None Include="Properties\PublishProfiles\EMS.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1862,6 +1863,7 @@
     <Compile Include="BTCD_DL\Transaction\clsT_Bids.cs" />
     <Compile Include="BTCD_DL\Transaction\clsT_Stock.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
@@ -1890,7 +1892,9 @@
     <Compile Include="Models\CategoryM.cs" />
     <Compile Include="Models\CustomerM.cs" />
     <Compile Include="Models\CustomerRequirmentM.cs" />
+    <Compile Include="Models\EmployeeM.cs" />
     <Compile Include="Models\ItemM.cs" />
+    <Compile Include="Models\RequestT.cs" />
     <Compile Include="Models\UnitOfMeasurementM.cs" />
     <Compile Include="Models\LocationM.cs" />
     <Compile Include="Models\LogIn.cs" />
@@ -1908,11 +1912,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\Components\Create.cshtml" />
-    <Content Include="Views\Components\Edit.cshtml" />
-    <Content Include="Views\Components\Index.cshtml" />
-    <Content Include="Views\Components\_PartialComponentSearch.cshtml" />
-    <Content Include="Views\Components\_PartialComponentTable.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Content\adminlte\css\adminlte.css.map" />
@@ -1982,8 +1981,6 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\StockType\Details.cshtml" />
-    <Content Include="Views\StockType\Index.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
@@ -1991,16 +1988,9 @@
     <Content Include="Views\User\EditPassword.cshtml" />
     <Content Include="Views\User\UserRoles.cshtml" />
     <Content Include="Views\User\AllRoles.cshtml" />
-    <Content Include="Views\Vendor\Create.cshtml" />
-    <Content Include="Views\Vendor\Edit.cshtml" />
-    <Content Include="Views\Vendor\Index.cshtml" />
-    <Content Include="Views\Components\_PartialComponentFilter.cshtml" />
     <Content Include="Views\Location\Create.cshtml" />
     <Content Include="Views\Location\Edit.cshtml" />
     <Content Include="Views\Location\Index.cshtml" />
-    <Content Include="Views\RejectionReasons\Create.cshtml" />
-    <Content Include="Views\RejectionReasons\Edit.cshtml" />
-    <Content Include="Views\RejectionReasons\Index.cshtml" />
     <Content Include="Views\Shared\_LockLayout.cshtml" />
     <Content Include="Views\Account\Lock.cshtml" />
     <Content Include="Views\ReportsTrn\Details.cshtml" />
@@ -2014,6 +2004,9 @@
     <Content Include="Views\Stock\ViewMyStock.cshtml" />
     <Content Include="Views\Request\Create.cshtml" />
     <Content Include="Views\Stock\CreateStock.cshtml" />
+    <Content Include="Views\Item\CreateStock.cshtml" />
+    <Content Include="Views\Employee\Create.cshtml" />
+    <Content Include="Views\Request\ViewRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

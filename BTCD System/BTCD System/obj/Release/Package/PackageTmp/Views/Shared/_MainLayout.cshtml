@@ -1,10 +1,10 @@
 ﻿@using System.Web
 @using System.Web.Optimization
-@using Emblishment_Management_System.Emblishment_DL.User
-@using Emblishment_Management_System.Common
-@using Emblishment_Management_System.Models
+@using BTCD_System.BTCD_DL.User
+@using BTCD_System.Common
+@using BTCD_System.Models
 
-@{List<emsRecentActivityU> emsRecentActivity;}
+@{List<RecentActivityU> emsRecentActivity;}
 
 <!DOCTYPE html>
 <!--
@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Emblishment</title>
+    <title>Business TO Customer Direct</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Load css files -->
@@ -98,9 +98,9 @@ desired effect
             <!-- Logo -->
             <a href="index2.html" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
-                <span class="logo-mini"><b>EMS</b></span>
+                <span class="logo-mini"><b>BTCD</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Emblishment</b></span>
+                <span class="logo-lg"><b>B2C Direct</b></span>
             </a>
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -402,24 +402,11 @@ desired effect
                         }
                         else
                         {
-                            emsRecentActivity = new List<emsRecentActivityU>();
+                            emsRecentActivity = new List<RecentActivityU>();
                         }
                     }
 
-                    @foreach (emsRecentActivityU emsRecentActivityU in emsRecentActivity)
-                    {
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="#">
-                                <i class="menu-icon fa fa-history bg-info"></i>
-                                <div class="menu-info">
-                                    <h4 class="control-sidebar-subheading">@commonFunctions.GetRecentActivityDescription(emsRecentActivityU.TransactionType, emsRecentActivityU.RecordType)</h4>
-                                    <p>@emsRecentActivityU.Description</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    }
+         
                     <!-- /.control-sidebar-menu -->
                     @*<h3 class="control-sidebar-heading">Tasks Progress</h3>
                     <ul class="control-sidebar-menu">

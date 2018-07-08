@@ -14,7 +14,12 @@ namespace BTCD_System.Controllers
     {
         private clsU_User clsU_User = new clsU_User();
 
-
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
         [HttpPost]
         [AllowAnonymous]
