@@ -1857,12 +1857,15 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Category.cs" />
+    <Compile Include="BTCD_DL\Master\clsM_Customer.cs" />
     <Compile Include="BTCD_DL\Master\clsM_UOM.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Grade.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Item.cs" />
     <Compile Include="BTCD_DL\Transaction\clsT_Bids.cs" />
+    <Compile Include="BTCD_DL\Transaction\clsT_CustomerRequirment.cs" />
     <Compile Include="BTCD_DL\Transaction\clsT_Stock.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerRequirmentController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -1891,7 +1894,7 @@
     <Compile Include="Models\BidsM.cs" />
     <Compile Include="Models\CategoryM.cs" />
     <Compile Include="Models\CustomerM.cs" />
-    <Compile Include="Models\CustomerRequirmentM.cs" />
+    <Compile Include="Models\CustomerRequirment.cs" />
     <Compile Include="Models\EmployeeM.cs" />
     <Compile Include="Models\ItemM.cs" />
     <Compile Include="Models\RequestT.cs" />
@@ -2007,6 +2010,9 @@
     <Content Include="Views\Item\CreateStock.cshtml" />
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Request\ViewRequest.cshtml" />
+    <Content Include="Views\CustomerRequirment\Create.cshtml" />
+    <Content Include="Views\CustomerRequirment\_PartialItemRequirment.cshtml" />
+    <Content Include="Views\CustomerRequirment\_PartialItemDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

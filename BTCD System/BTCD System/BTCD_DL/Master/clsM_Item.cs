@@ -1,4 +1,5 @@
 ﻿using BTCD_System.BTCD_DL.Connection;
+using BTCD_System.Common;
 using BTCD_System.Models;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,29 @@ namespace BTCD_System.BTCD_DL.Master
                 }
 
                 return lstItem;
+            }
+        }
+
+
+
+        public List<AutoComplete> GetItemsByCateroryId(int category)
+        {
+            List<AutoComplete> lstAutoComplete = new List<AutoComplete>();
+            p = new SqlParameter[1];
+
+            p[0] = new SqlParameter("@CategoryId", SqlDbType.Int) { Value = category };
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectItemByCategory", p))
+            {
+                while (reader.Read())
+                {
+                    lstAutoComplete.Add(new AutoComplete
+                    {
+                        value = reader["ItemId"].ToString(),
+                        text =  reader["ItemName"].ToString()
+                    });
+                }
+
+                return lstAutoComplete;
             }
         }
 

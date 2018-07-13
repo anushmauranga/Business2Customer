@@ -39,6 +39,30 @@ namespace BTCD_System.BTCD_DL.Master
                 return lstUnitofMeasurement;
             }
         }
+
+
+        public UnitofMeasurementM GetUnitofMeasurementFromId(int UOMId)
+        {
+            UnitofMeasurementM UnitofMeasurement = new UnitofMeasurementM();
+
+            p = new SqlParameter[1];
+            p[0] = new SqlParameter("@UOMId", SqlDbType.Int) { Value = UOMId };
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectUnitofMeasurementsFromId",p))
+            {
+                while (reader.Read())
+                {
+                    UnitofMeasurement = new UnitofMeasurementM
+                    {
+                        UOMId = int.Parse(reader["UOMId"].ToString()),
+                        UOMCode = reader["UOMCode"].ToString(),
+                        UOMName = reader["UOMName"].ToString(),
+                    };
+                }
+
+                return UnitofMeasurement;
+            }
+        }
         #endregion
     }
 }

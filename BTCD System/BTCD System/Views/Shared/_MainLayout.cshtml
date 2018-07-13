@@ -330,7 +330,23 @@ desired effect
                                     <li><a href="~/Item/Category"><i class="fa fa-check-circle-o"></i>Create</a></li>
                                 </ul>
                             </li>
+
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-times-circle-o"></i> <span>Customer Requirment</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="~/CustomerRequirment/Create"><i class="fa fa-check-circle-o"></i>Create</a></li>
+                                </ul>
+                            </li>
+
                         </ul>
+
+                  
+
                     </li>
                     <li class="treeview">
                         <a href="#">
@@ -361,7 +377,7 @@ desired effect
                 Anything you want
             </div>*@
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2017 <a href="#">Courtaulds IT</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2018 <a href="#">Anush Mauranga</a>.</strong> All rights reserved.
         </footer>
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
@@ -388,25 +404,6 @@ desired effect
                         }
                     }
 
-         
-                    <!-- /.control-sidebar-menu -->
-                    @*<h3 class="control-sidebar-heading">Tasks Progress</h3>
-                    <ul class="control-sidebar-menu">
-                        <li>
-                            <a href="javascript:;">
-                                <h4 class="control-sidebar-subheading">
-                                    Custom Template Design
-                                    <span class="pull-right-container">
-                                        <span class="label label-danger pull-right">70%</span>
-                                    </span>
-                                </h4>
-                                <div class="progress progress-xxs">
-                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>*@
-                    <!-- /.control-sidebar-menu -->
                 </div>
                 <!-- /.tab-pane -->
                 <!-- Stats tab content -->
@@ -445,33 +442,6 @@ desired effect
             </div>
         </div>
     </div>
-
-    @*<div class="modal fade bd-example-modal-lg" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content"></div>
-        </div>
-        <div class="modal-dialog">
-            <div class="modal-content"></div>
-        </div>
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true" class="">x </span>
-                        <span class="sr-only">Close</span>
-
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Loading...</h4>
-
-                </div>
-                <div class="modal-body"></div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="EditItem(this, event);">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>*@
 
 
     <script type="text/javascript">
@@ -517,25 +487,6 @@ desired effect
                 });
             }
         });
-
-
-        function FillSG() {
-            var FGVal = $('#FGStyle').val();
-            //document.getElementById("j").value = "My value";
-            $.ajax({
-                url: '/Components/FillSG',
-                type: "GET",
-                dataType: "JSON",
-                data: { FGStyle: FGVal },
-                success: function (sgs) {
-                    $("#SGStyle").html(""); // clear before appending new list
-                    $.each(sgs, function (i, sg) {
-                        $("#SGStyle").append(
-                            $('<option></option>').val(sg.SGStyle).html(sg.SGStyle));
-                    });
-                }
-            });
-        }
 
     </script>
 
