@@ -1856,8 +1856,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BTCD_DL\Master\clsM_Bank.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Category.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Customer.cs" />
+    <Compile Include="BTCD_DL\Master\clsM_Employee.cs" />
     <Compile Include="BTCD_DL\Master\clsM_UOM.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Grade.cs" />
     <Compile Include="BTCD_DL\Master\clsM_Item.cs" />
@@ -1891,6 +1893,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AutoIncrementU.cs" />
+    <Compile Include="Models\BankBranchM.cs" />
+    <Compile Include="Models\BankM.cs" />
     <Compile Include="Models\BidsM.cs" />
     <Compile Include="Models\CategoryM.cs" />
     <Compile Include="Models\CustomerM.cs" />

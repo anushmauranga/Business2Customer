@@ -147,6 +147,7 @@ namespace BTCD_System.Controllers
         }
 
 
+
         [HttpPost]
         public ActionResult Accept(int RequirementId,int StockId)
         {
@@ -157,6 +158,7 @@ namespace BTCD_System.Controllers
 
             return RedirectToAction("ViewMyStock", "Stock");
         }
+
 
 
         [HttpPost]
