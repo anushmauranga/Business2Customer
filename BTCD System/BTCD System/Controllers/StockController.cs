@@ -17,7 +17,7 @@ namespace BTCD_System.Controllers
         [Authorize(Roles = "View-My-Stock")]
         public ActionResult ViewMyStock()
         {
-            lstStock = new clsT_Stock().GetStockByUserCode(-1);
+            lstStock = new clsT_Stock().GetStockByUserCode(commonFunctions.GetTransactionEmployeeCode());
 
             return View(lstStock);
         }

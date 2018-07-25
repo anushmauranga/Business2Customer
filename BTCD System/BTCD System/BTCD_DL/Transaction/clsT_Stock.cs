@@ -153,7 +153,7 @@ namespace BTCD_System.BTCD_DL.Transaction
             {
                 p[0] = new SqlParameter("@ItemId", SqlDbType.Int);
                 p[0].Value = StockM.ItemId;
-                p[1] = new SqlParameter("@UserCode", SqlDbType.Int);
+                p[1] = new SqlParameter("@EmployeeCode", SqlDbType.VarChar,50);
                 p[1].Value = StockM.EmployeeCode;
                 p[2] = new SqlParameter("@LocationId", SqlDbType.Int);
                 p[2].Value = StockM.LocationId;
@@ -184,12 +184,12 @@ namespace BTCD_System.BTCD_DL.Transaction
         }
 
 
-        public List<StockM> GetStockByUserCode(int UserCode)
+        public List<StockM> GetStockByUserCode(string EmployeeCode)
         {
             lstStock = new List<StockM>();
             p = new SqlParameter[1];
 
-            p[0] = new SqlParameter("@UserCode", SqlDbType.Int) { Value = UserCode };
+            p[0] = new SqlParameter("@EmployeeCode", SqlDbType.VarChar,50) { Value = EmployeeCode };
 
             using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectTotalStockByUserCode", p))
             {
