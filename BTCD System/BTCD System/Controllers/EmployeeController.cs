@@ -16,7 +16,10 @@ namespace BTCD_System.Controllers
         private List<BankBranchM> lstBankBranch;
         private List<AutoComplete> lstAutoComplete;
 
+        private clsM_Employee clsM_Employee = new clsM_Employee();
+
         // GET: Employee
+        [Authorize(Roles = "Create-Employee")]
         public ActionResult Create()
         {
             ViewBag.Bank = getBank();
@@ -24,8 +27,10 @@ namespace BTCD_System.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Create-Employee")]
         [HttpPost]
         [ActionName("Create")]
+        [ValidateAntiForgeryToken]
         public ActionResult Create_Post()
         {
             EmployeeM Employee = new EmployeeM();
@@ -34,10 +39,17 @@ namespace BTCD_System.Controllers
 
             if (ModelState.IsValid)
             {
+                string ErrMsg = clsM_Employee.SaveEmployee(Employee);
 
+                if (ErrMsg == string.Empty)
+                {
+                   return RedirectToAction("Create");
+                }
             }
 
-            return View();
+            ViewBag.Bank = getBank();
+
+            return View(Employee);
         }
 
 

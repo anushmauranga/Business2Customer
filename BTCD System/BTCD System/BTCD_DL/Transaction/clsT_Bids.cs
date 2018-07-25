@@ -20,32 +20,6 @@ namespace BTCD_System.BTCD_DL.Transaction
 
         #region Methods
 
-        public List<BidsM> GetDealersStockBids(int dealerId)
-        {
-            lstBid = new List<BidsM>();
-            p = new SqlParameter[1];
-
-            p[0] = new SqlParameter("@UserId", SqlDbType.Int) { Value = dealerId };
-            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectBidstoMyStock", p))
-            {
-                while (reader.Read())
-                {
-                    lstBid.Add(new BidsM
-                    {
-                        BidId = int.Parse(reader["BidId"].ToString()),
-                        StockId = int.Parse(reader["StockId"].ToString()),
-                        RequestedBy = int.Parse(reader["RequestedBy"].ToString()),
-                        RequestedQty = decimal.Parse(reader["RequestedQty"].ToString()),
-                        RequestedPrice = decimal.Parse(reader["RequestedPrice"].ToString()),
-                        IsConfirmed = bool.Parse(reader["IsConfirmed"].ToString()),
-                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
-                    });
-                }
-
-                return lstBid;
-            }
-        }
-
         public List<RequestT> ViewRequest(int StockId)
         {
             lstRequest = new List<RequestT>();
@@ -67,7 +41,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                       RequiredDate = Convert.ToDateTime(reader["RequiredDate"].ToString()),
                       RequiredPrice = Convert.ToDecimal(reader["RequiredPrice"].ToString()),
                       RequiredQty   = Convert.ToDecimal(reader["RequiredQty"].ToString()),
-                      CreatedBy  = int.Parse(reader["CreatedBy"].ToString()),
+                      CreatedBy  = reader["CreatedBy"].ToString(),
                     });
                 }
 

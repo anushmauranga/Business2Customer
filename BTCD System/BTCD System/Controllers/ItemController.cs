@@ -26,6 +26,7 @@ namespace BTCD_System.Controllers
         private string StockNo = "";
         private string ErrorMsg = "";
 
+        [Authorize(Roles = "Create-Stock")]
         public ActionResult Category()
         {
             lstCategory = new clsM_Category().GetAllCategories();
@@ -33,6 +34,7 @@ namespace BTCD_System.Controllers
             return View(lstCategory);
         }
 
+        [Authorize(Roles = "Create-Stock")]
         public ActionResult Details(int ID)
         {
             lstItem = new clsM_Item().GetItemsByCategories(ID);
@@ -40,6 +42,7 @@ namespace BTCD_System.Controllers
             return View(lstItem);
         }
 
+        [Authorize(Roles = "Create-Stock")]
         public ActionResult CreateStock(int ID)
         {
             StockM stock = new StockM();
@@ -58,6 +61,7 @@ namespace BTCD_System.Controllers
         }
 
 
+        [Authorize(Roles = "Create-Stock")]
         [HttpPost]
         [ActionName("CreateStock")]
         public ActionResult CreateStock_POST()
@@ -68,7 +72,7 @@ namespace BTCD_System.Controllers
 
             if(ModelState.IsValid)
             {
-                stock.UserCode = commonFunctions.GetTransactionUserCode();
+                stock.EmployeeCode = commonFunctions.GetTransactionEmployeeCode();
 
                 ErrorMsg = clsT_Stock.SaveStock(stock, out StockNo);
 

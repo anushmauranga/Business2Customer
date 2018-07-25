@@ -26,6 +26,7 @@ namespace BTCD_System.Controllers
         private string RequestNo = "";
         private string ErrorMsg = "";
 
+        [Authorize(Roles = "Requrement-Create")]
         public ActionResult Create()
         {
             List<CustomerRequirment> lstCustomerRequirment = new List<CustomerRequirment>();
@@ -39,7 +40,7 @@ namespace BTCD_System.Controllers
             return View(lstCustomerRequirment);
         }
 
-
+        [Authorize(Roles = "Requrement-Create")]
         [HttpPost]
         [ActionName("Create")]
         public ActionResult Create_Post()
@@ -59,7 +60,7 @@ namespace BTCD_System.Controllers
 
                 //Update customer and create date 
                 lstCustomerRequirment.ForEach(e => e.CustomerId = 1);
-                lstCustomerRequirment.ForEach(e => e.CreatedBy = commonFunctions.GetTransactionUserCode());
+                lstCustomerRequirment.ForEach(e => e.CreatedBy = commonFunctions.GetTransactionEmployeeCode());
 
                 ErrorMsg = new clsT_CustomerRequirment().SaveCustomerRequirment(lstCustomerRequirment, out RequestNo);
 

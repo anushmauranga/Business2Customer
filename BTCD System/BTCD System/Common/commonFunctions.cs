@@ -83,16 +83,29 @@ namespace BTCD_System.Common
             }
         }
 
-        public static int GetTransactionUserCode()
+        public static string GetTransactionEmployeeCode()
         {
             try
             {
                 var idendity = (HttpContext.Current.User as clsPrincipal).Identity as clsIdentity;
-                return idendity.User.UserCode;
+                return idendity.User.EmployeeCode;
             }
             catch (Exception ex)
             {
-                return -1;
+                return string.Empty;
+            }
+        }
+
+        public static string GetNickName()
+        {
+            try
+            {
+                var idendity = (HttpContext.Current.User as clsPrincipal).Identity as clsIdentity;
+                return idendity.User.NickName;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
             }
         }
 

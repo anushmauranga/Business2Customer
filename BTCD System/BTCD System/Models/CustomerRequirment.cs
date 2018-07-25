@@ -23,7 +23,7 @@ namespace BTCD_System.Models
         [Required]
         public decimal RequiredPrice { get; set; }
         public DateTime CreatedDate { get; set; }
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
 
         //Reference 

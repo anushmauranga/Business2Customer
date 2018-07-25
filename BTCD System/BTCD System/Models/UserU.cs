@@ -10,11 +10,10 @@ namespace BTCD_System.Models
     public class UserU
     {
         public int  Id { get; set; }
-        public int UserCode { get; set; }
 
         [Required]
-        [Display(Name = "EPF")]
-        public string Epf { get; set; }
+        [Display(Name = "Employee Code")]
+        public string EmployeeCode { get; set; }
 
         [Required]
         [Display(Name = "User Name")]
@@ -31,19 +30,16 @@ namespace BTCD_System.Models
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Display(Name = "Tel No")]
-        public string Tel { get; set; }
+        public string NickName { get; set; }
 
         [Display(Name = "Transaction Date")]
         public DateTime TrnDate { get; set; }

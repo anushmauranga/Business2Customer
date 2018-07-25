@@ -29,6 +29,7 @@ namespace BTCD_System.Controllers
         private string ErrorMsg = "";
 
         // GET: Request
+        [Authorize(Roles = "Create-Request")]
         [HttpPost]
         public ActionResult Create(int StockId)
         {
@@ -43,6 +44,7 @@ namespace BTCD_System.Controllers
         }
 
 
+        [Authorize(Roles = "Create-Request")]
         [HttpPost]
         public ActionResult SaveRequest()
         {
@@ -52,7 +54,7 @@ namespace BTCD_System.Controllers
 
             if (ModelState.IsValid)
             {
-                Bids.RequestedBy = commonFunctions.GetTransactionUserCode();
+                Bids.RequestedBy = commonFunctions.GetTransactionEmployeeCode();
 
                 ErrorMsg = clsT_Bids.SaveRequest(Bids, out RequestNo);
 
@@ -85,7 +87,7 @@ namespace BTCD_System.Controllers
         }
 
 
-
+        [Authorize(Roles = "View-Request")]
         [HttpPost]
         public ActionResult ViewRequest(int StockId)
         {

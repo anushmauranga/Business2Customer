@@ -21,7 +21,7 @@ namespace BTCD_System.Models
         public int UOMId { get; set; }
         public string UOMName { get; set; }
         [Required]
-        public int RequestedBy { get; set; }
+        public string RequestedBy { get; set; }
         public decimal Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         [Required]

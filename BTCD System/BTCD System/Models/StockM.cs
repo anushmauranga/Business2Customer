@@ -14,7 +14,7 @@ namespace BTCD_System.Models
         public int ItemId { get; set; }
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
-        public int UserCode { get; set; }
+        public string EmployeeCode { get; set; }
         [Required]
         public int LocationId { get; set; }
         [Required]

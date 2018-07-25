@@ -114,14 +114,13 @@ namespace BTCD_System.BTCD_DL.User
                         while (dr.Read())
                         {
                             user.Id = int.Parse(dr["ID"].ToString());
-                            user.UserCode = int.Parse(dr["UserCode"].ToString());
-                            user.Epf = dr["EPF"].ToString();
+                            user.EmployeeCode = dr["EmployeeCode"].ToString();
                             user.Username = dr["Username"].ToString();
+                            user.NickName = dr["NickName"].ToString();
                             user.Password = dr["Password"].ToString();
                             user.FirstName = dr["FirstName"].ToString();
                             user.LastName = dr["LastName"].ToString();
                             user.Email = dr["Email"].ToString();
-                            user.Tel = dr["Tel"].ToString();
                             user.TrnDate = DateTime.Parse(dr["TrnDate"].ToString());
                             user.TrnUser = dr["TrnUser"].ToString();
                             user.Active = bool.Parse(dr["Active"].ToString());
@@ -179,17 +178,18 @@ namespace BTCD_System.BTCD_DL.User
                     {
                         userList.Add(new UserU
                         {
-                            Active = bool.Parse(dr["Active"].ToString()),
+
+                            Id = int.Parse(dr["Id"].ToString()),                     
                             Email = dr["Email"].ToString(),
-                            Epf = dr["Epf"].ToString(),
+                            EmployeeCode = dr["EmployeeCode"].ToString(),
+                            Username = dr["Username"].ToString(),
                             FirstName = dr["FirstName"].ToString(),
-                            Id = int.Parse(dr["Id"].ToString()),
+                            NickName = dr["NickName"].ToString(),           
                             LastName = dr["LastName"].ToString(),
                             Password = dr["Password"].ToString(),
-                            Tel = dr["Tel"].ToString(),
                             TrnDate = DateTime.Parse(dr["TrnDate"].ToString()),
                             TrnUser = dr["TrnUser"].ToString(),
-                            Username = dr["Username"].ToString()
+                            Active = bool.Parse(dr["Active"].ToString())
                         });
                     }
                 }
@@ -200,33 +200,25 @@ namespace BTCD_System.BTCD_DL.User
         public string createUser(UserU emsUser)
         {
             var idendity = (HttpContext.Current.User as clsPrincipal).Identity as clsIdentity;
-            p = new SqlParameter[10];
+            p = new SqlParameter[6];
 
             try
             {
-                p[0] = new SqlParameter("@EPF", SqlDbType.VarChar, 50);
-                p[0].Value = emsUser.Epf;
+                p[0] = new SqlParameter("@EmployeeCode", SqlDbType.VarChar, 50);
+                p[0].Value = emsUser.EmployeeCode;
                 p[1] = new SqlParameter("@Username", SqlDbType.VarChar, 50);
                 p[1].Value = emsUser.Username;
                 p[2] = new SqlParameter("@Password", SqlDbType.VarChar, 50);
-                p[2].Value = emsUser.Password;
-                p[3] = new SqlParameter("@FirstName", SqlDbType.VarChar, 50);
-                p[3].Value = emsUser.FirstName;
-                p[4] = new SqlParameter("@LastName", SqlDbType.VarChar, 50);
-                p[4].Value = emsUser.LastName;
-                p[5] = new SqlParameter("@Email", SqlDbType.VarChar, 50);
-                p[5].Value = emsUser.Email;
-                p[6] = new SqlParameter("@Tel", SqlDbType.VarChar, 50);
-                p[6].Value = emsUser.Tel;
-                p[7] = new SqlParameter("@TrnUser", SqlDbType.VarChar, 50);
-                p[7].Value = idendity.User.Username;
-                p[8] = new SqlParameter("@Active", SqlDbType.Bit, 0);
-                p[8].Value = emsUser.Active;
-                p[9] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
-                p[9].Direction = ParameterDirection.Output;
+                p[2].Value = emsUser.Password;        
+                p[3] = new SqlParameter("@TrnUser", SqlDbType.VarChar, 50);
+                p[3].Value = idendity.User.Username;
+                p[4] = new SqlParameter("@Active", SqlDbType.Bit, 0);
+                p[4].Value = emsUser.Active;
+                p[5] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
+                p[5].Direction = ParameterDirection.Output;
 
                 SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserCrate", p);
-                return p[9].Value.ToString();
+                return p[5].Value.ToString();
             }
             catch (Exception ex)
             {
@@ -235,41 +227,6 @@ namespace BTCD_System.BTCD_DL.User
             }
         }
 
-        public string editUser(int ID, UserU emsUser)
-        {
-            var idendity = (HttpContext.Current.User as clsPrincipal).Identity as clsIdentity;
-            p = new SqlParameter[9];
-
-            try
-            {
-                p[0] = new SqlParameter("@EPF", SqlDbType.VarChar, 50);
-                p[0].Value = emsUser.Epf;
-                p[1] = new SqlParameter("@ID", SqlDbType.Int, 0);
-                p[1].Value = ID;
-                p[2] = new SqlParameter("@FirstName", SqlDbType.VarChar, 50);
-                p[2].Value = emsUser.FirstName;
-                p[3] = new SqlParameter("@LastName", SqlDbType.VarChar, 50);
-                p[3].Value = emsUser.LastName;
-                p[4] = new SqlParameter("@Email", SqlDbType.VarChar, 50);
-                p[4].Value = emsUser.Email;
-                p[5] = new SqlParameter("@Tel", SqlDbType.VarChar, 50);
-                p[5].Value = emsUser.Tel;
-                p[6] = new SqlParameter("@TrnUser", SqlDbType.VarChar, 50);
-                p[6].Value = idendity.User.Username;
-                p[7] = new SqlParameter("@Active", SqlDbType.Bit, 0);
-                p[7].Value = emsUser.Active;
-                p[8] = new SqlParameter("@msg", SqlDbType.VarChar, 50);
-                p[8].Direction = ParameterDirection.Output;
-
-                SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure,"spUserEdit", p);
-                return p[8].Value.ToString();
-            }
-            catch (Exception ex)
-            {
-
-                return ex.Message;
-            }
-        }
 
         public string changeUserPassword(int ID, UserU emsUser)
         {
@@ -346,13 +303,13 @@ namespace BTCD_System.BTCD_DL.User
                         while (dr.Read())
                         {
                             user.Id = int.Parse(dr["ID"].ToString());
-                            user.Epf = dr["EPF"].ToString();
+                            user.EmployeeCode = dr["EmployeeCode"].ToString();
+                            user.NickName = dr["NickName"].ToString();
                             user.Username = dr["Username"].ToString();
                             user.Password = dr["Password"].ToString();
                             user.FirstName = dr["FirstName"].ToString();
                             user.LastName = dr["LastName"].ToString();
                             user.Email = dr["Email"].ToString();
-                            user.Tel = dr["Tel"].ToString();
                             user.TrnDate = DateTime.Parse(dr["TrnDate"].ToString());
                             user.TrnUser = dr["TrnUser"].ToString();
                             user.Active = bool.Parse(dr["Active"].ToString());
@@ -371,7 +328,7 @@ namespace BTCD_System.BTCD_DL.User
         {
             p = new SqlParameter[1];
 
-            p[0] = new SqlParameter("@Username", SqlDbType.VarChar, 0);
+            p[0] = new SqlParameter("@Username", SqlDbType.VarChar, 50);
             p[0].Value = username;
 
             using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),CommandType.StoredProcedure, "spRolesSelectAllRolesNotAssignedForUser", p))

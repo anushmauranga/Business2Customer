@@ -1,17 +1,22 @@
-﻿using BTCD_System.BTCD_DL.User;
+﻿using BTCD_System.BTCD_DL.Master;
+using BTCD_System.BTCD_DL.User;
+using BTCD_System.Common;
 using BTCD_System.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Security;
 
 namespace BTCD_System.Controllers
 {
     public class UserController : Controller
     {
-        clsU_User clsuser = new clsU_User();
+        private clsU_User clsuser = new clsU_User();
+        private List<SelectListItem> ListItem;
+        private List<AutoComplete> lstAutoComplete;
+
         // GET: User
         [Authorize(Roles = "User - List")]
         public ActionResult Index()
@@ -31,6 +36,8 @@ namespace BTCD_System.Controllers
         [Authorize(Roles = "User - Create")]
         public ActionResult Create()
         {
+            ViewBag.Employee = GetAllEmployee();
+
             return View();
         }
 
@@ -44,7 +51,7 @@ namespace BTCD_System.Controllers
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -59,21 +66,6 @@ namespace BTCD_System.Controllers
             return View(emsUserU);
         }
 
-        // POST: User/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, UserU users)
-        {
-            try
-            {
-                clsuser.editUser(id, users);
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         // GET: User/EditPassword/5
         [Authorize(Roles = "User - ChangePassword")]
@@ -103,14 +95,14 @@ namespace BTCD_System.Controllers
         [Authorize(Roles = "User - User Roles")]
         public ActionResult UserRoles(int id, string username)
         {
-            List<UserRoleTUview> emsUserRoles = new List<UserRoleTUview>();
-            emsUserRoles = clsuser.getUserRoleByUserID(id);
+            List<UserRoleTUview> UserRoles = new List<UserRoleTUview>();
+            UserRoles = clsuser.getUserRoleByUserID(id);
 
             TempData["keyUser"] = username;
             TempData["userid"] = id;
 
 
-            return View(emsUserRoles);
+            return View(UserRoles);
 
 
         }
@@ -171,6 +163,22 @@ namespace BTCD_System.Controllers
             {
                 return View();
             }
+        }
+
+        [NonAction]
+        private List<SelectListItem> GetAllEmployee(string SelectedItem = null, string DisabledItem = null)
+        {
+            ListItem = new List<SelectListItem>();
+
+            lstAutoComplete = new clsM_Employee().GetEmployee();
+
+            foreach (AutoComplete Employee in lstAutoComplete)
+            {
+                ListItem.Add(new SelectListItem { Value = Employee.value.ToString(), Text = Employee.text, Selected = Employee.value.ToString() == SelectedItem ? true : false, Disabled = Employee.value.ToString() == DisabledItem ? true : false });
+
+            }
+
+            return ListItem;
         }
     }
 }

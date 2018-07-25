@@ -34,7 +34,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -65,7 +65,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -97,7 +97,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -128,7 +128,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -154,7 +154,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                 p[0] = new SqlParameter("@ItemId", SqlDbType.Int);
                 p[0].Value = StockM.ItemId;
                 p[1] = new SqlParameter("@UserCode", SqlDbType.Int);
-                p[1].Value = StockM.UserCode;
+                p[1].Value = StockM.EmployeeCode;
                 p[2] = new SqlParameter("@LocationId", SqlDbType.Int);
                 p[2].Value = StockM.LocationId;
                 p[3] = new SqlParameter("@GradeId", SqlDbType.Int);
@@ -200,7 +200,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -232,7 +232,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),
@@ -262,7 +262,7 @@ namespace BTCD_System.BTCD_DL.Transaction
                         StockId = int.Parse(reader["StockId"].ToString()),
                         ItemId = int.Parse(reader["ItemId"].ToString()),
                         ItemName = reader["ItemName"].ToString(),
-                        UserCode = int.Parse(reader["UserCode"].ToString()),
+                        EmployeeCode = reader["EmployeeCode"].ToString(),
                         LocationId = int.Parse(reader["LocationId"].ToString()),
                         GradeId = int.Parse(reader["GradeId"].ToString()),
                         Grade = reader["Grade"].ToString(),

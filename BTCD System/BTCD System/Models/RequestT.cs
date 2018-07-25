@@ -15,6 +15,6 @@ namespace BTCD_System.Models
         public decimal RequiredQty { get; set; }
         public decimal RequiredPrice { get; set; }
         public DateTime RequiredDate { get; set; }
-        public int CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
     }
 }
