@@ -23,38 +23,5 @@
 <section class="content">
 
 
-    @{ int count = 0; bool IsRow = true; }
-
-    @foreach(CategoryM CategoryM in Model)
-    {
-        count++;
-
-        if (IsRow == true)
-        {
-           @:<div class="row">
-        }
-
-        if (count <= 4)
-        {
-            IsRow = false;
-
-            Tile tile = new Tile();
-
-            tile.Controller = "Item";
-            tile.Action = "Create";
-            tile.Value = CategoryM.CategoryId.ToString();
-            tile.Subject = CategoryM.CategoryName;
-
-            Html.RenderPartial("~/Views/Shared/_Tile.cshtml", tile);
-        }
-
-        if (count == 4)
-        {
-            count = 0;
-            IsRow = true;
-            @:</div>
-        }
-    }
-
 </section>
 <!-- /.content -->

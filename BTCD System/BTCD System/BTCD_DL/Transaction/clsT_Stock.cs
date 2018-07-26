@@ -19,6 +19,41 @@ namespace BTCD_System.BTCD_DL.Transaction
 
         #region Methods
 
+        //public string SaveStock(StockM stockM, out string stockNo)
+        //{
+        //    p = new SqlParameter[9];
+        //    try
+        //    {
+
+        //        p[0] = new SqlParameter("@ItemId", SqlDbType.Int);
+        //        p[0].Value = stockM.ItemId;
+        //        p[1] = new SqlParameter("@UserId", SqlDbType.Int);
+        //        p[1].Value = stockM.UserId;
+        //        p[2] = new SqlParameter("@LocationId", SqlDbType.Int);
+        //        p[2].Value = stockM.LocationId;
+        //        p[3] = new SqlParameter("@GradeId", SqlDbType.Int);
+        //        p[3].Value = stockM.GradeId;
+        //        p[4] = new SqlParameter("@Quantity", SqlDbType.Decimal);
+        //        p[4].Value = stockM.Quantity;
+        //        p[5] = new SqlParameter("@UOMId", SqlDbType.Int);
+        //        p[5].Value = stockM.UOMId;
+        //        p[6] = new SqlParameter("@UnitPrice", SqlDbType.Decimal);
+        //        p[6].Value = stockM.UnitPrice;
+        //        p[7] = new SqlParameter("@Result", SqlDbType.VarChar, 200);
+        //        p[7].Direction = ParameterDirection.Output;
+        //        p[8] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
+        //        p[8].Direction = ParameterDirection.Output;
+
+        //        SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spInsertStockD", p);
+        //        stockNo = p[7].Value.ToString();
+
+        //        return p[8].Value.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
         public List<StockM> GetDealerStockByDealerId(int dealerId)
         {
             lstStock = new List<StockM>();

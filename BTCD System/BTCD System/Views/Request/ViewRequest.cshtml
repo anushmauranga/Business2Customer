@@ -70,7 +70,6 @@
                                     <th>Required Date</th>
                                     <th>Required Qty</th>
                                     <th>Required Price (Rs)</th>
-                                    <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -85,7 +84,6 @@
                                         <td> @Request.RequiredDate.ToString("yyyy-MM-dd")</td>
                                         <td> @Request.RequiredQty</td>
                                         <td> @Request.RequiredPrice</td>
-                                        <td> @Math.Round((Request.RequiredQty * Request.RequiredPrice),2)</td>
                                         <td>
                                             <div class="form-group">
                                                 <button type="submit" name="Approved" class="ApprovedBtn btn  btn-success btn-sm btn-flat">Approve</button>

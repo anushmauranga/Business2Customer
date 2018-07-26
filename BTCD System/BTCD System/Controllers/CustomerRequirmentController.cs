@@ -320,6 +320,12 @@ namespace BTCD_System.Controllers
             return Json(lstAutoComplete);
         }
 
+        public ActionResult ViewCustomerRequirments()
+        {
+            List<CustomerRequirment> lstCustomerRequirment = new List<CustomerRequirment>();         
+            lstCustomerRequirment = new clsT_CustomerRequirment().GetCustomerRequirmentByCreatedUser(commonFunctions.GetTransactionEmployeeCode());
+            return View(lstCustomerRequirment);
+        }
 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model System.Collections.Generic.IEnumerable<Emblishment_Management_System.Models.emsUserU>
+﻿@model System.Collections.Generic.IEnumerable<BTCD_System.Models.UserU>
 
 @{
     ViewBag.Title = "Index";
@@ -35,10 +35,13 @@
                         <tr>
                             <th></th>
                             <th>
-                                EPF
+                                Employee Code
                             </th>
                             <th>
-                                Username
+                                User name
+                            </th>
+                            <th>
+                                Nick Name
                             </th>
                             <th>
                                 First Name
@@ -49,26 +52,23 @@
                             <th>
                                 Email
                             </th>
-                            <th >
-                                Tel No
-                            </th >
-
-
                         </tr>
                         </thead>
                         @foreach (var item in Model)
                         {
                             <tr>
                                 <td>
-                                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs glyphicon glyphicon-edit", title = "Edit User" })
                                     @Html.ActionLink(" ", "UserRoles", new { id = item.Id, username = item.Username }, new { @class = "btn btn-info btn-xs glyphicon glyphicon-wrench", title = "Change Roles" })
                                     @Html.ActionLink(" ", "EditPassword", new { id = item.Id }, new { @class = "btn btn-danger btn-xs glyphicon glyphicon glyphicon-user", title = "Change Password" })
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Epf)
+                                    @Html.DisplayFor(modelItem => item.EmployeeCode)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NickName)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -79,10 +79,6 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Email)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Tel)
-                                </td>
-
                             </tr>
                         }
 

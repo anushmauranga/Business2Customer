@@ -31,5 +31,7 @@ namespace BTCD_System.Models
         public string GradeDesc { get; set; }
         public string UOMDesc { get; set; }
 
+        public string CustomerName { get; set; }
+
     }
 }
