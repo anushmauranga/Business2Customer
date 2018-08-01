@@ -1899,6 +1899,7 @@
     <Compile Include="Models\CategoryM.cs" />
     <Compile Include="Models\CustomerM.cs" />
     <Compile Include="Models\CustomerRequirment.cs" />
+    <Compile Include="Models\EmployeeCategory.cs" />
     <Compile Include="Models\EmployeeM.cs" />
     <Compile Include="Models\ItemM.cs" />
     <Compile Include="Models\RequestT.cs" />

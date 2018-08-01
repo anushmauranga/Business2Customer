@@ -13,6 +13,7 @@ namespace BTCD_System.Controllers
     {
         private List<SelectListItem> ListItem;
         private List<BankM> lstBank;
+        private List<EmployeeCategory> lstEmployeeCategory;
         private List<BankBranchM> lstBankBranch;
         private List<AutoComplete> lstAutoComplete;
 
@@ -23,10 +24,11 @@ namespace BTCD_System.Controllers
         public ActionResult Create()
         {
             ViewBag.Bank = getBank();
-
+            ViewBag.EmployeeCategory = getEmployeeCategory();
             return View();
         }
 
+    
         [Authorize(Roles = "Create-Employee")]
         [HttpPost]
         [ActionName("Create")]
@@ -47,6 +49,7 @@ namespace BTCD_System.Controllers
                 }
             }
 
+            ViewBag.EmployeeCategory = getEmployeeCategory();
             ViewBag.Bank = getBank();
 
             return View(Employee);
@@ -68,6 +71,20 @@ namespace BTCD_System.Controllers
             return ListItem;
         }
 
+
+        private List<SelectListItem> getEmployeeCategory(string SelectedItem = null, string DisabledItem = null)
+        {
+            ListItem = new List<SelectListItem>();
+            lstEmployeeCategory = new clsM_Employee().GetCategory();
+
+            foreach (EmployeeCategory EmployeeCategory in lstEmployeeCategory)
+            {
+                ListItem.Add(new SelectListItem { Value = EmployeeCategory.EmployeeCategoryCode.ToString(), Text = EmployeeCategory.EmployeeCategoryName, Selected = EmployeeCategory.EmployeeCategoryCode.ToString() == SelectedItem ? true : false, Disabled = EmployeeCategory.EmployeeCategoryCode.ToString() == DisabledItem ? true : false });
+
+            }
+
+            return ListItem;
+        }
 
         [HttpPost]
         public JsonResult getBankBranch(string BankCode)

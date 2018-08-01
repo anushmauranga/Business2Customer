@@ -23,30 +23,49 @@ namespace BTCD_System.BTCD_DL.Master
         #region Methods
         public string SaveEmployee(EmployeeM Employee)
         {
-            p = new SqlParameter[15];
+            p = new SqlParameter[16];
 
-            p[0] = new SqlParameter("@FirstName", SqlDbType.VarChar) { Value = Employee.FirstName };
-            p[1] = new SqlParameter("@LastName", SqlDbType.VarChar) { Value = Employee.LastName };
-            p[2] = new SqlParameter("@NickName", SqlDbType.VarChar) { Value = Employee.NickName };
-            p[3] = new SqlParameter("@Address1", SqlDbType.VarChar) { Value = Employee.Address1 };
-            p[4] = new SqlParameter("@Address2", SqlDbType.VarChar) { Value = Employee.Address2 };
-            p[5] = new SqlParameter("@Address3", SqlDbType.VarChar) { Value = Employee.Address3 };
-            p[6] = new SqlParameter("@Telephone1", SqlDbType.VarChar) { Value = Employee.Telephone1 };
-            p[7] = new SqlParameter("@Telephone2", SqlDbType.VarChar) { Value = Employee.Telephone2 };
-            p[8] = new SqlParameter("@BankCode", SqlDbType.VarChar) { Value = Employee.BankCode };
-            p[9] = new SqlParameter("@BranchCode", SqlDbType.VarChar) { Value = Employee.BranchCode };
-            p[10] = new SqlParameter("@AccountNo", SqlDbType.VarChar) { Value = Employee.AccountNo };         
-            p[11] = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Employee.Email };
-            p[12] = new SqlParameter("@NICNo", SqlDbType.VarChar) { Value = Employee.NICNo };
-            p[13] = new SqlParameter("@Dob", SqlDbType.Date) { Value = Employee.Dob };
-            p[14] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
-            p[14].Direction = ParameterDirection.Output;
+            p[0] = new SqlParameter("@EmployeeCategory", SqlDbType.VarChar) { Value = Employee.EmployeeCategory };
+            p[1] = new SqlParameter("@FirstName", SqlDbType.VarChar) { Value = Employee.FirstName };
+            p[2] = new SqlParameter("@LastName", SqlDbType.VarChar) { Value = Employee.LastName };
+            p[3] = new SqlParameter("@NickName", SqlDbType.VarChar) { Value = Employee.NickName };
+            p[4] = new SqlParameter("@Address1", SqlDbType.VarChar) { Value = Employee.Address1 };
+            p[5] = new SqlParameter("@Address2", SqlDbType.VarChar) { Value = Employee.Address2 };
+            p[6] = new SqlParameter("@Address3", SqlDbType.VarChar) { Value = Employee.Address3 };
+            p[7] = new SqlParameter("@Telephone1", SqlDbType.VarChar) { Value = Employee.Telephone1 };
+            p[8] = new SqlParameter("@Telephone2", SqlDbType.VarChar) { Value = Employee.Telephone2 };
+            p[9] = new SqlParameter("@BankCode", SqlDbType.VarChar) { Value = Employee.BankCode };
+            p[10] = new SqlParameter("@BranchCode", SqlDbType.VarChar) { Value = Employee.BranchCode };
+            p[11] = new SqlParameter("@AccountNo", SqlDbType.VarChar) { Value = Employee.AccountNo };         
+            p[12] = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Employee.Email };
+            p[13] = new SqlParameter("@NICNo", SqlDbType.VarChar) { Value = Employee.NICNo };
+            p[14] = new SqlParameter("@Dob", SqlDbType.Date) { Value = Employee.Dob };
+            p[15] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
+            p[15].Direction = ParameterDirection.Output;
 
             SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spInsertEmployee", p);
 
-            return p[14].Value.ToString();
+            return p[15].Value.ToString();
         }
 
+        public List<EmployeeCategory> GetCategory()
+        {
+            List<EmployeeCategory> lstEmployeeCategory = new List<EmployeeCategory>();
+
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectEmployeeCategory"))
+            {
+                while (reader.Read())
+                {
+                    lstEmployeeCategory.Add(new EmployeeCategory
+                    {
+                        EmployeeCategoryCode = reader["EmployeeCategoryCode"].ToString(),
+                        EmployeeCategoryName = reader["EmployeeCategoryName"].ToString()
+                    });
+                }
+
+                return lstEmployeeCategory;
+            }
+        }
 
         public List<AutoComplete> GetEmployee()
         {

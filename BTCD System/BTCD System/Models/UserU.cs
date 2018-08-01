@@ -39,6 +39,8 @@ namespace BTCD_System.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        public string EmployeeCategory { get; set; }
+
         public string NickName { get; set; }
 
         [Display(Name = "Transaction Date")]

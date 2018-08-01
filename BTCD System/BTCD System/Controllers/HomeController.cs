@@ -16,7 +16,7 @@ namespace BTCD_System.Controllers
 
 
   
-        [AllowAnonymous]
+       [Authorize]
         public ActionResult Index()
         {
           
@@ -24,10 +24,9 @@ namespace BTCD_System.Controllers
             return View();
         }
 
- 
 
 
-        [AllowAnonymous]
+        [Authorize]
         public ActionResult Lock()
         {
             return View();

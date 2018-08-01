@@ -115,6 +115,7 @@ namespace BTCD_System.BTCD_DL.User
                         {
                             user.Id = int.Parse(dr["ID"].ToString());
                             user.EmployeeCode = dr["EmployeeCode"].ToString();
+                            user.EmployeeCategory = dr["EmployeeCategoryName"].ToString();
                             user.Username = dr["Username"].ToString();
                             user.NickName = dr["NickName"].ToString();
                             user.Password = dr["Password"].ToString();
@@ -304,6 +305,7 @@ namespace BTCD_System.BTCD_DL.User
                         {
                             user.Id = int.Parse(dr["ID"].ToString());
                             user.EmployeeCode = dr["EmployeeCode"].ToString();
+                            user.EmployeeCategory = dr["EmployeeCategoryName"].ToString();
                             user.NickName = dr["NickName"].ToString();
                             user.Username = dr["Username"].ToString();
                             user.Password = dr["Password"].ToString();

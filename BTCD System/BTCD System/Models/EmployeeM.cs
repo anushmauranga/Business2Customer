@@ -9,6 +9,7 @@ namespace BTCD_System.Models
     public class EmployeeM
     {
         public string EmployeeCode { get; set; }
+        public string EmployeeCategory { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
