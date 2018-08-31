@@ -44,6 +44,7 @@
             tile.Action = "CreateStock";
             tile.Value = ItemM.ItemId.ToString();
             tile.Subject = ItemM.ItemName;
+            tile.Image = ItemM.ImageUrl;
 
             Html.RenderPartial("~/Views/Shared/_Tile.cshtml", tile);
         }

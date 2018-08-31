@@ -12,7 +12,7 @@
             else
             {
                 @:<a href="@Url.Action(Model.Action, Model.Controller,new { Id = Model.Value })" style="color: white;">
-                @:<img src="@Model.Image" class="info-box-icon">
+                @:<img src="@Url.Content(Model.Image)" class="info-box-icon">
                 @:</a>
             }
         </span>

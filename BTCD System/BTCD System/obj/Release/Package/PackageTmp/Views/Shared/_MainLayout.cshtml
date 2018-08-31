@@ -101,6 +101,7 @@ desired effect
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg"><b>B2C Direct</b></span>
             </a>
+            <div id="google_translate_element"></div>
             <!-- Header Navbar -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -152,7 +153,7 @@ desired effect
 
                                         @*<span class="fa fa-1x text-yellow fa-user-circle-o"></span>*@
                                         <img src="@Url.Content("~/Content/adminlte/")img/user.png" class="user-image" alt="User Image">
-                                        <span class="hidden-xs">@Html.Raw(idendity.User.NickName)</span>
+                                        <span class="hidden-xs">@Html.Raw(idendity.User.EmployeeCategory)-@Html.Raw(idendity.User.NickName)</span>
 
                                     }
                                     else
@@ -290,58 +291,47 @@ desired effect
 
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-table"></i> <span>Master Data</span>
+                            <i class="fa fa-table"></i> <span>User Registration</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="~/Employee/Create"><i class="fa fa-times-circle-o"></i>Create Employee</a></li>
-                            <li><a href="~/User/Index"><i class="fa fa-users"></i>User Control</a></li>
-                           
+                            <li><a href="~/Employee/Create"><i class="fa fa-times-circle-o"></i>Create Member</a></li>
+                            <li><a href="~/User/Index"><i class="fa fa-users"></i>Create System User</a></li>
+
                         </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-cogs"></i> <span>Transactions</span>
+                            <i class="fa fa-cogs"></i> <span>Stock</span>
                             <span class="pull-right-container">
                                 <i class="fa fa-angle-left pull-right"></i>
                             </span>
                         </a>
                         <ul class="treeview-menu">
-
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-times-circle-o"></i> <span>Stock</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="~/Item/Category"><i class="fa fa-check-circle-o"></i>Add Stock</a></li>
-                                    <li><a href="~/Stock/ViewStock"><i class="fa fa-times-circle-o"></i>View All Stock</a></li>
-                                    <li><a href="~/Stock/ViewMyStock"><i class="fa fa-check-square-o"></i>View My Stock</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="treeview">
-                                <a href="#">
-                                    <i class="fa fa-times-circle-o"></i> <span>Customer Requirment</span>
-                                    <span class="pull-right-container">
-                                        <i class="fa fa-angle-left pull-right"></i>
-                                    </span>
-                                </a>
-                                <ul class="treeview-menu">
-                                    <li><a href="~/CustomerRequirment/Create"><i class="fa fa-check-circle-o"></i>Create</a></li>
-                                    <li><a href="~/CustomerRequirment/ViewCustomerRequirments"><i class="fa fa-check-circle-o"></i>View My Reqirment</a></li>
-                                </ul>
-                            </li>
-
+                            <li><a href="~/Item/Category"><i class="fa fa-check-circle-o"></i>Add Stock</a></li>
+                            <li><a href="~/Stock/ViewMyStock"><i class="fa fa-check-square-o"></i>View My Stock</a></li>
+                            <li><a href="~/Stock/ViewStock"><i class="fa fa-times-circle-o"></i>View All Stock</a></li>
                         </ul>
-
-
-
                     </li>
+
+
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-times-circle-o"></i> <span>Customer Requirment</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="~/CustomerRequirment/Create"><i class="fa fa-check-circle-o"></i>Create</a></li>
+                            <li><a href="~/CustomerRequirment/ViewCustomerRequirments"><i class="fa fa-check-circle-o"></i>View My Reqirment</a></li>
+                        </ul>
+                    </li>
+
+
+
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-line-chart"></i> <span>Reports & Inquires</span>
@@ -517,3 +507,10 @@ desired effect
         MessageBox UserMessage = (MessageBox)TempData["Message"];
         @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
     }*@
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({ pageLanguage: 'en', includedLanguages: 'en,si,ta', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

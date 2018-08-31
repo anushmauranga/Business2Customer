@@ -11,6 +11,7 @@ namespace BTCD_System.Models
         public int CategoryId { get; set; }
         public string CategoryCode { get; set; }
         public string CategoryName { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

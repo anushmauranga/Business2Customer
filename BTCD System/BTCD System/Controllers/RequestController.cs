@@ -49,12 +49,12 @@ namespace BTCD_System.Controllers
         public ActionResult SaveRequest()
         {
             BidsM Bids = new BidsM();
-
+            Bids.RequestedBy = commonFunctions.GetTransactionEmployeeCode();
             TryUpdateModel(Bids);
-
+            
             if (ModelState.IsValid)
             {
-                Bids.RequestedBy = commonFunctions.GetTransactionEmployeeCode();
+               
 
                 ErrorMsg = clsT_Bids.SaveRequest(Bids, out RequestNo);
 

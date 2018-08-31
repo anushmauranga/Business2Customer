@@ -31,5 +31,7 @@ namespace BTCD_System.Models
         public decimal UnitPrice { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime CreatedDate { get; set; }
+        public string Location { get; set; }
+        public string StockOwner { get; set; }
     }
 }

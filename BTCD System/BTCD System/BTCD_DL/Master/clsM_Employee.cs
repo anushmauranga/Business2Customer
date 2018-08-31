@@ -21,9 +21,9 @@ namespace BTCD_System.BTCD_DL.Master
         #endregion
 
         #region Methods
-        public string SaveEmployee(EmployeeM Employee)
+        public string SaveEmployee(EmployeeM Employee,string username)
         {
-            p = new SqlParameter[16];
+            p = new SqlParameter[17];
 
             p[0] = new SqlParameter("@EmployeeCategory", SqlDbType.VarChar) { Value = Employee.EmployeeCategory };
             p[1] = new SqlParameter("@FirstName", SqlDbType.VarChar) { Value = Employee.FirstName };
@@ -40,12 +40,13 @@ namespace BTCD_System.BTCD_DL.Master
             p[12] = new SqlParameter("@Email", SqlDbType.VarChar) { Value = Employee.Email };
             p[13] = new SqlParameter("@NICNo", SqlDbType.VarChar) { Value = Employee.NICNo };
             p[14] = new SqlParameter("@Dob", SqlDbType.Date) { Value = Employee.Dob };
-            p[15] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
-            p[15].Direction = ParameterDirection.Output;
+            p[15] = new SqlParameter("@Username", SqlDbType.VarChar) { Value = username };
+            p[16] = new SqlParameter("@ERRMSG", SqlDbType.VarChar, 400);
+            p[16].Direction = ParameterDirection.Output;
 
             SqlHelper.ExecuteNonQuery(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spInsertEmployee", p);
 
-            return p[15].Value.ToString();
+            return p[16].Value.ToString();
         }
 
         public List<EmployeeCategory> GetCategory()
@@ -67,11 +68,13 @@ namespace BTCD_System.BTCD_DL.Master
             }
         }
 
-        public List<AutoComplete> GetEmployee()
+        public List<AutoComplete> GetEmployee(string username)
         {
             List<AutoComplete> lstAutoComplete = new List<AutoComplete>();
-
-            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectAllEmployee"))
+            p = new SqlParameter[1];
+            p[0] = new SqlParameter("@Username", SqlDbType.VarChar, 50);
+            p[0].Value = username;
+            using (reader = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(), CommandType.StoredProcedure, "spSelectAllEmployee",p))
             {
                 while (reader.Read())
                 {

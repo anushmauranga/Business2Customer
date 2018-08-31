@@ -29,5 +29,7 @@ namespace BTCD_System.Controllers
 
             return View(lstStock);
         }
+
+     
     }
 }

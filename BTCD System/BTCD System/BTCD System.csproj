@@ -182,6 +182,16 @@
     <Content Include="Content\adminlte\img\credit\paypal2.png" />
     <Content Include="Content\adminlte\img\credit\visa.png" />
     <Content Include="Content\bootstrap-tile\bootstraptiles.css" />
+    <Content Include="Content\Images\Category\fish.jpg" />
+    <Content Include="Content\Images\Category\fruits.jpg" />
+    <Content Include="Content\Images\Category\meat.jpg" />
+    <Content Include="Content\Images\Category\vegetable.jpg" />
+    <Content Include="Content\Images\vegetable\Artichokes- Jerusalem.jpg" />
+    <Content Include="Content\Images\vegetable\Artichokes-globe.jpg" />
+    <Content Include="Content\Images\vegetable\Asian greens.jpg" />
+    <Content Include="Content\Images\vegetable\Beans.jpg" />
+    <Content Include="Content\Images\vegetable\Beetroot.jpg" />
+    <Content Include="Content\Images\vegetable\Broccoli.jpg" />
     <Content Include="Images\pageload.gif" />
     <Content Include="Images\Preloader_2.gif" />
     <Content Include="Content\adminlte\img\user.png" />
@@ -2018,6 +2028,8 @@
     <Content Include="Views\CustomerRequirment\Create.cshtml" />
     <Content Include="Views\CustomerRequirment\_PartialItemRequirment.cshtml" />
     <Content Include="Views\CustomerRequirment\_PartialItemDetails.cshtml" />
+    <Content Include="Views\CustomerRequirment\View.cshtml" />
+    <Content Include="Views\CustomerRequirment\ViewCustomerRequirments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2027,6 +2039,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="CategoryImage\" />
+    <Folder Include="ItemImage\" />
     <Folder Include="Views\ASPX\" />
   </ItemGroup>
   <PropertyGroup>

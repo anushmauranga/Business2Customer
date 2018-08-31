@@ -60,14 +60,15 @@
 
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="Stock" class="table table-bordered table-striped">
+                            <table id="Stock" class="datatable display nowrap"  style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Action</th>
-                                        <th>Item </th>
                                         <th>Item Name</th>
-                                        <th>Grade</th>
-                                        <th>Quantity</th>
+                                        <th style="display: none;">Location</th>
+                                        <th style="display: none;">Owner</th>
+                                        <th style="display: none;">Grade</th>
+                                        <th style="display: none;">Quantity</th>
                                         <th>Unit Price (Rs)</th>
                                     </tr>
                                 </thead>
@@ -78,11 +79,12 @@
                                             <td>
                                                 @using (@Html.BeginForm("Create", "Request", new { StockId = Stock.StockId }, FormMethod.Post))
                                                 {
-                                                    <button type="submit" class="btn btn-success btn-xs btn-flat">&nbsp;Request&nbsp;</button>
+                                                    <button type="submit" class="btn btn-success btn-xs btn-flat">Add Bid</button>
                                                 }
                                             </td>
-                                            <td> @Stock.ItemId</td>
                                             <td> @Stock.ItemName</td>
+                                            <td> @Stock.Location</td>
+                                            <td> @Stock.StockOwner</td>
                                             <td> @Stock.Grade</td>
                                             <td> @Stock.RemainQuantity</td>
                                             <td> @Stock.UnitPrice</td>
@@ -107,3 +109,35 @@
     @Html.Raw("<script>bootbox.alert('" + UserMessage.Message + "');</script>");
 }
 
+<script>
+
+
+    var table = $('#Stock').DataTable({
+        "columnDefs": [
+          {
+              "targets": [2],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [3],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [4],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [5],
+              "visible": true,
+              "searchable": false
+          }
+        ],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+</script>

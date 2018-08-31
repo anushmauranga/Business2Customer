@@ -31,7 +31,7 @@ namespace BTCD_System.Models
         public bool IsConfirmed { get; set; }
         [Required]
         public DateTime RequiredDate { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
 
     }
 }

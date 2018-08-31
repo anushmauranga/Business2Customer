@@ -21,7 +21,7 @@ namespace BTCD_System.Controllers
         [Authorize(Roles = "User - List")]
         public ActionResult Index()
         {
-            List<UserU> lstEmsUser = clsuser.GetUserActiveAll();
+            List<UserU> lstEmsUser = clsuser.GetUserActiveAll(commonFunctions.GetTransactionUser());
             return View(lstEmsUser);
         }
 
@@ -36,7 +36,7 @@ namespace BTCD_System.Controllers
         [Authorize(Roles = "User - Create")]
         public ActionResult Create()
         {
-            ViewBag.Employee = GetAllEmployee();
+            ViewBag.Employee = GetAllEmployee(commonFunctions.GetTransactionUser());
 
             return View();
         }
@@ -166,11 +166,11 @@ namespace BTCD_System.Controllers
         }
 
         [NonAction]
-        private List<SelectListItem> GetAllEmployee(string SelectedItem = null, string DisabledItem = null)
+        private List<SelectListItem> GetAllEmployee(string username,string SelectedItem = null, string DisabledItem = null)
         {
             ListItem = new List<SelectListItem>();
 
-            lstAutoComplete = new clsM_Employee().GetEmployee();
+            lstAutoComplete = new clsM_Employee().GetEmployee(username);
 
             foreach (AutoComplete Employee in lstAutoComplete)
             {

@@ -167,9 +167,12 @@ namespace BTCD_System.BTCD_DL.User
             }
         }
 
-        public List<UserU> GetUserActiveAll()
+        public List<UserU> GetUserActiveAll(string username)
         {
-            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),CommandType.StoredProcedure, "spUserSelectActiveAll"))
+            p = new SqlParameter[1];
+            p[0] = new SqlParameter("@Username", SqlDbType.VarChar, 50);
+            p[0].Value = username;
+            using (SqlDataReader dr = SqlHelper.ExecuteReader(clsConnectionString.getConnectionString(),CommandType.StoredProcedure, "spUserSelectActiveAll",p))
             {
                 List<UserU> userList = new List<UserU>();
 

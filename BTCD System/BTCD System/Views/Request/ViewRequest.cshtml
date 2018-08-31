@@ -175,6 +175,33 @@
        });
    });
 
-
+    var table = $('#Stock').DataTable({
+        "columnDefs": [
+          {
+              "targets": [2],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [3],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [4],
+              "visible": true,
+              "searchable": false
+          },
+          {
+              "targets": [5],
+              "visible": true,
+              "searchable": false
+          }
+        ],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
 
 </script>

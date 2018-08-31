@@ -244,7 +244,9 @@ namespace BTCD_System.BTCD_DL.Transaction
                         UOMId = int.Parse(reader["UOMId"].ToString()),
                         UOMName = reader["UOMName"].ToString(),
                         UnitPrice = decimal.Parse(reader["UnitPrice"].ToString()),
-                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
+                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString()),
+                        Location = reader["LocationName"].ToString(),
+                        StockOwner = reader["NickName"].ToString(),
                     });
                 }
                 return lstStock;
@@ -275,7 +277,9 @@ namespace BTCD_System.BTCD_DL.Transaction
                         UOMId = int.Parse(reader["UOMId"].ToString()),
                         UOMName = reader["UOMName"].ToString(),
                         UnitPrice = decimal.Parse(reader["UnitPrice"].ToString()),
-                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
+                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString()),
+                        Location = reader["LocationName"].ToString(),
+                        StockOwner = reader["NickName"].ToString()
                     };
                 }
                 return Stock;
@@ -306,7 +310,9 @@ namespace BTCD_System.BTCD_DL.Transaction
                         UOMId = int.Parse(reader["UOMId"].ToString()),
                         UOMName = reader["UOMName"].ToString(),
                         UnitPrice = decimal.Parse(reader["UnitPrice"].ToString()),
-                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString())
+                        CreatedDate = DateTime.Parse(reader["CreatedDate"].ToString()),
+                        Location = reader["LocationName"].ToString(),
+                        StockOwner = reader["NickName"].ToString()
                     });
                 }
                 return lstStock;

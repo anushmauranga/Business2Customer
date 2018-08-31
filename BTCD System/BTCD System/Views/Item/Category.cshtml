@@ -39,11 +39,12 @@
             IsRow = false;
 
             Tile tile = new Tile();
-
+            
             tile.Controller = "Item";
             tile.Action = "Details";
             tile.Value = CategoryM.CategoryId.ToString();
             tile.Subject = CategoryM.CategoryName;
+            tile.Image =  CategoryM.ImageUrl;
 
             Html.RenderPartial("~/Views/Shared/_Tile.cshtml", tile);
         }

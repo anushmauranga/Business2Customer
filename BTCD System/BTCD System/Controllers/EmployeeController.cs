@@ -41,7 +41,7 @@ namespace BTCD_System.Controllers
 
             if (ModelState.IsValid)
             {
-                string ErrMsg = clsM_Employee.SaveEmployee(Employee);
+                string ErrMsg = clsM_Employee.SaveEmployee(Employee,commonFunctions.GetTransactionUser());
 
                 if (ErrMsg == string.Empty)
                 {

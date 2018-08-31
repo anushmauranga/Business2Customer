@@ -70,7 +70,7 @@ namespace BTCD_System.Controllers
 
             TryUpdateModel(stock);
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 stock.EmployeeCode = commonFunctions.GetTransactionEmployeeCode();
 
@@ -79,7 +79,7 @@ namespace BTCD_System.Controllers
 
                 if (!string.IsNullOrEmpty(ErrorMsg))
                 {
-                    TempData["Message"] = new MessageBox { CssClassName = ".alert-danger", Title = "Error!", Message = "Transaction was rollback.Try again.<br>"  };
+                    TempData["Message"] = new MessageBox { CssClassName = ".alert-danger", Title = "Error!", Message = "Transaction was rollback.Try again.<br>" };
 
                     ViewBag.Location = getLocation();
                     ViewBag.Grade = GetItemGrade(stock.ItemId);
@@ -130,7 +130,7 @@ namespace BTCD_System.Controllers
 
             foreach (ItemGradeM ItemGrade in lstItemGrade)
             {
-                ListItem.Add(new SelectListItem { Value = ItemGrade.GradeId.ToString(), Text = ItemGrade.GradeDescription});
+                ListItem.Add(new SelectListItem { Value = ItemGrade.GradeId.ToString(), Text = ItemGrade.GradeDescription });
 
             }
 
@@ -152,5 +152,10 @@ namespace BTCD_System.Controllers
             return ListItem;
         }
 
+
+        public ActionResult Cancel()
+        {
+            return RedirectToAction("Category", "Item");
+        }
     }
 }
