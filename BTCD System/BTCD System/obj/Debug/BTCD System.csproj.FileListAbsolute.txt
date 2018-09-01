@@ -56,3 +56,4 @@ F:\Development-personal\Business2Customer.git\trunk\BTCD System\BTCD System\bin\
 F:\Development-personal\Business2Customer.git\trunk\BTCD System\BTCD System\bin\BTCD System.pdb
 F:\Development-personal\Business2Customer.git\trunk\BTCD System\BTCD System\bin\Microsoft.ReportViewer.WebForms.DLL
 F:\Development-personal\Business2Customer.git\trunk\BTCD System\BTCD System\bin\ReportViewerForMvc.dll
+F:\Development-personal\Business2Customer.git\trunk\BTCD System\BTCD System\obj\Debug\BTCD System.csprojResolveAssemblyReference.cache
